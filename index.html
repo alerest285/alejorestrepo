@@ -28,17 +28,6 @@
       --font-head:  'Titillium Web', Verdana, Helvetica, sans-serif;
       --font-body:  'Inter', 'Titillium Web', Verdana, sans-serif;
     }
-    [data-theme="dark"] {
-      --bg:         #0d1117;
-      --bg-alt:     #161b22;
-      --text:       #e2e8f0;
-      --muted:      #8b949e;
-      --link:       #58a6ff;
-      --link-hover: #f09228;
-      --highlight:  #2d2b0a;
-      --border:     rgba(255,255,255,0.1);
-      --hr-grad:    rgba(255,255,255,0.15);
-    }
 
     /* ── Reset / Base ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -77,22 +66,6 @@
       padding: 2.5rem 1.6rem 4rem;
     }
 
-    /* ── Dark-mode toggle (Chenhao Li style) ── */
-    #theme-btn {
-      position: fixed;
-      top: 1rem; right: 1.2rem;
-      z-index: 200;
-      background: var(--bg-alt);
-      border: 1px solid var(--border);
-      color: var(--text);
-      border-radius: 999px;
-      padding: 0.3rem 0.75rem;
-      font-size: 0.8rem;
-      font-family: var(--font-body);
-      cursor: pointer;
-      transition: background 0.2s, border-color 0.2s;
-    }
-    #theme-btn:hover { border-color: var(--link); color: var(--link); }
 
     /* ── Hero card (Lihan Zha style) ── */
     .hero-card {
@@ -254,14 +227,12 @@
       border-radius: 4px;
       letter-spacing: 0.02em;
     }
-    [data-theme="dark"] .venue-badge { background: rgba(88,166,255,0.2); color: var(--link); }
 
     .award-line {
       font-size: 0.875rem;
       color: #c00;
       margin-bottom: 0.3rem;
     }
-    [data-theme="dark"] .award-line { color: #f87171; }
 
     /* Resource links (Lihan Zha style) */
     .resource-links {
@@ -424,8 +395,6 @@
 </head>
 <body>
 
-<!-- Dark-mode toggle (Chenhao Li) -->
-<button id="theme-btn" aria-label="Toggle dark mode">☀ Light</button>
 
 <div class="page">
 
@@ -726,33 +695,6 @@
 </div><!-- /.page -->
 
 <script>
-  // ── Dark-mode toggle (Chenhao Li / breadli428 approach) ──────────────────
-  const btn = document.getElementById('theme-btn');
-  const html = document.documentElement;
-
-  function applyTheme(theme) {
-    html.setAttribute('data-theme', theme);
-    btn.textContent = theme === 'dark' ? '☀ Light' : '☾ Dark';
-    localStorage.setItem('wc-color-theme', theme);
-  }
-
-  // Respect system preference on first load
-  (function () {
-    const saved = localStorage.getItem('wc-color-theme');
-    if (saved) {
-      applyTheme(saved);
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      applyTheme('dark');
-    } else {
-      applyTheme('light');
-    }
-  })();
-
-  btn.addEventListener('click', () => {
-    const current = html.getAttribute('data-theme');
-    applyTheme(current === 'dark' ? 'light' : 'dark');
-  });
-
   // ── Collapsible abstracts (Deepak Pathak toggleblock style) ──────────────
   function toggleAbstract(btn) {
     const block = btn.nextElementSibling;
