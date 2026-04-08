@@ -375,6 +375,42 @@
     .newscontent { color: var(--muted); }
     .newscontent i { color: var(--link); font-style: italic; }
 
+    /* ── Top nav ── */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 0;
+      padding: 0 1.6rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .top-nav a {
+      font-family: var(--font-head);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.75rem 1.1rem;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .top-nav a:hover, .top-nav a.active {
+      color: var(--link);
+      border-bottom-color: var(--link);
+    }
+    .nav-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
     /* ── Footer ── */
     .site-footer {
       text-align: center;
@@ -395,11 +431,18 @@
 </head>
 <body>
 
+<div class="nav-wrapper">
+  <nav class="top-nav">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+  </nav>
+</div>
 
 <div class="page">
 
   <!-- ── Hero card (Lihan Zha layout) ── -->
-  <section class="hero-card">
+  <section class="hero-card" id="about">
     <div class="hero-photo">
       <!-- Replace src with your actual photo -->
       <div class="photo-placeholder">👤</div>
@@ -416,10 +459,9 @@
       <div class="contact-panel">
         <p class="contact-line">Email: alejo [at] student [dot] ethz [dot] ch</p>
         <div class="link-row">
-          <a href="#">GitHub</a>
-          <a href="#">LinkedIn</a>
-          <a href="#">Google Scholar</a>
-          <a href="#">Twitter / X</a>
+          <a href="https://github.com/alerest285">GitHub</a>
+          <a href="https://www.linkedin.com/in/arestrepo2/">LinkedIn</a>
+          <a href="https://x.com/arestrepo115">Twitter / X</a>
           <a href="#">CV</a>
         </div>
       </div>
@@ -429,7 +471,7 @@
   <hr>
 
   <!-- ── Projects / Research (Lihan Zha card list + Pathak highlights) ── -->
-  <section>
+  <section id="projects">
     <p class="section-kicker">Selected work</p>
     <h2 class="section-title">Projects</h2>
 
@@ -594,69 +636,69 @@
   <hr>
 
   <!-- ── Experience — Karpathy timeline style ── -->
-  <section>
+  <section id="experience">
     <p class="section-kicker">Background</p>
     <h2 class="section-title">Experience</h2>
 
-    <div class="timeline" id="history">
+    <div class="timeline">
 
       <div class="entry row">
-        <div class="timespan">2024 &ndash;</div>
+        <div class="timespan">Feb 2026 &ndash;</div>
         <div class="ico">
           <div class="entry-dot"></div>
-          <div class="org-logo-placeholder">🔬</div>
+          <div class="org-logo-placeholder">🧠</div>
         </div>
         <div class="entry-desc">
-          <div class="entry-role">Research Assistant</div>
-          <div class="entry-org">Autonomous Systems Lab · ETH Zurich</div>
-          <div class="entry-body">
-            Working on perception and state estimation for legged robots. Implementing and benchmarking novel SLAM algorithms in simulation and on real hardware (ANYmal C).
-          </div>
+          <div class="entry-role">Hardware Intern</div>
+          <div class="entry-org">microAGI</div>
         </div>
       </div>
 
       <div class="entry row">
-        <div class="timespan">Summer 2024</div>
+        <div class="timespan">Sep 2025 &ndash;</div>
         <div class="ico">
           <div class="entry-dot"></div>
-          <div class="org-logo-placeholder">🚀</div>
+          <div class="org-logo-placeholder">🤖</div>
         </div>
         <div class="entry-desc">
-          <div class="entry-role">Robotics Engineer Intern</div>
-          <div class="entry-org">Stealth Robotics Startup · Zürich</div>
-          <div class="entry-body">
-            First robotics hire. Built the embedded control stack from scratch — motor drivers, firmware, and the ROS 2 middleware layer. Shipped v1 hardware in 10 weeks.
-          </div>
+          <div class="entry-role">Lead, Robot Learning Division</div>
+          <div class="entry-org">ETH Robotics Student Network</div>
         </div>
       </div>
 
       <div class="entry row">
-        <div class="timespan">2023</div>
+        <div class="timespan">FS26</div>
         <div class="ico">
           <div class="entry-dot"></div>
-          <div class="org-logo-placeholder">🏎</div>
+          <div class="org-logo-placeholder">📡</div>
         </div>
         <div class="entry-desc">
-          <div class="entry-role">Perception Sub-team Member</div>
-          <div class="entry-org">AMZ Racing (Formula Student Driverless) · ETH Zurich</div>
-          <div class="entry-body">
-            Contributed to the cone detection and track mapping pipeline using stereo cameras and LiDAR on the driverless Formula Student car.
-          </div>
+          <div class="entry-role">Teaching Assistant — Networks &amp; Circuits</div>
+          <div class="entry-org">ETH Zurich</div>
         </div>
       </div>
 
       <div class="entry row">
-        <div class="timespan">2022 &ndash; 2023</div>
+        <div class="timespan">HS25</div>
         <div class="ico">
           <div class="entry-dot"></div>
           <div class="org-logo-placeholder">💡</div>
         </div>
         <div class="entry-desc">
-          <div class="entry-role">Co-founder</div>
-          <div class="entry-org">Robotics Startup · Zürich</div>
-          <div class="entry-body">
-            Co-founded a robotics startup. Built MVP, pitched to investors, and learned the full cycle from prototype to product with a small cross-functional team.
-          </div>
+          <div class="entry-role">Teaching Assistant — Digital Circuits</div>
+          <div class="entry-org">ETH Zurich</div>
+        </div>
+      </div>
+
+      <div class="entry row">
+        <div class="timespan">Jul 2025 &ndash; Feb 2026</div>
+        <div class="ico">
+          <div class="entry-dot"></div>
+          <div class="org-logo-placeholder">🦾</div>
+        </div>
+        <div class="entry-desc">
+          <div class="entry-role">Robotics Intern</div>
+          <div class="entry-org">Ascento Robotics · Zürich</div>
         </div>
       </div>
 
@@ -689,7 +731,6 @@
   <hr>
 
   <footer class="site-footer">
-    <p>Design adapted from <a href="https://karpathy.github.io/">Andrej Karpathy</a>, <a href="https://lihzha.github.io/">Lihan Zha</a>, <a href="https://www.cs.cmu.edu/~dpathak/">Deepak Pathak</a>, and <a href="https://breadli428.github.io/">Chenhao Li</a>.</p>
   </footer>
 
 </div><!-- /.page -->
@@ -701,6 +742,23 @@
     const open = block.classList.toggle('open');
     btn.textContent = open ? '▾ Abstract' : '▸ Abstract';
   }
+
+  // ── Nav scroll-spy ────────────────────────────────────────────────────────
+  const navLinks = document.querySelectorAll('.top-nav a');
+  const sections = ['about', 'projects', 'experience'].map(id => document.getElementById(id));
+
+  function updateActive() {
+    const scrollY = window.scrollY + 100;
+    let current = sections[0];
+    for (const s of sections) {
+      if (s && s.offsetTop <= scrollY) current = s;
+    }
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current.id);
+    });
+  }
+  window.addEventListener('scroll', updateActive, { passive: true });
+  updateActive();
 </script>
 
 </body>
