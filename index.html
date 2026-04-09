@@ -419,6 +419,107 @@
       color: var(--muted);
     }
 
+    /* ── Blurred "coming soon" preview ── */
+    .blurred-preview { position: relative; display: inline-block; }
+    .blurred-preview img {
+      filter: blur(5px);
+      border-radius: 10px;
+      width: 170px;
+      height: 170px;
+      object-fit: cover;
+      border: 1px solid var(--border);
+    }
+    .soon-label {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-head);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: #fff;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+      border-radius: 10px;
+      background: rgba(0,0,0,0.18);
+    }
+
+    /* ── Robotic setups hover pills ── */
+    .setup-pill {
+      position: relative;
+      display: inline-flex;
+      font-size: 0.72rem;
+      padding: 0.14rem 0.5rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--muted);
+      background: var(--bg);
+      cursor: default;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .setup-pill:hover { border-color: var(--link); color: var(--text); }
+    .setup-popup {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      width: 170px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.14);
+      z-index: 100;
+    }
+    .setup-popup img, .setup-popup video {
+      width: 100%;
+      height: 110px;
+      object-fit: cover;
+      display: block;
+    }
+    .setup-pill:hover .setup-popup { display: block; }
+
+    /* ── Hover expand panel ── */
+    .research-card { cursor: pointer; }
+    .entry.row { cursor: default; }
+
+    .expand-panel {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.45s ease, opacity 0.3s ease, padding-top 0.3s ease, margin-top 0.3s ease;
+      padding-top: 0;
+      margin-top: 0;
+    }
+    .research-card:hover .expand-panel,
+    .entry.row:hover .expand-panel {
+      max-height: 700px;
+      opacity: 1;
+      padding-top: 0.75rem;
+      margin-top: 0.6rem;
+      border-top: 1px solid var(--border);
+    }
+    .media-slot {
+      width: 100%;
+      height: 130px;
+      border: 2px dashed var(--border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 0.55rem;
+      background: var(--bg);
+    }
+    .expand-note {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
     /* ── Responsive ── */
     @media (max-width: 640px) {
       .hero-card { flex-direction: column; gap: 1.5rem; }
@@ -444,17 +545,19 @@
   <!-- ── Hero card (Lihan Zha layout) ── -->
   <section class="hero-card" id="about">
     <div class="hero-photo">
-      <!-- Replace src with your actual photo -->
-      <div class="photo-placeholder">👤</div>
+      <img src="image_1.jpg" alt="Alejo Restrepo">
     </div>
     <div class="hero-body">
-      <p class="eyebrow">Robotics &nbsp;·&nbsp; Embedded Systems &nbsp;·&nbsp; ETH Zurich</p>
+      <p class="eyebrow">Robot Learning &nbsp;·&nbsp; Mechatronics &nbsp;·&nbsp; ETH Zürich</p>
       <h1 class="site-name">Alejo Restrepo</h1>
       <p class="lead">
-        I am an undergraduate at <a href="https://ethz.ch">ETH Zurich</a> studying Electrical Engineering, with a focus on robotics, perception, and autonomous systems.
+        I am an undergraduate at <a href="https://ethz.ch/en.html">ETH Zürich</a>, studying Electrical Engineering, particularly passionate about mechatronics and robot learning.
       </p>
       <p>
-        My work sits at the intersection of hardware and intelligent software — from designing custom PCBs and firmware for robotic platforms to implementing state estimation and real-time control algorithms. Beyond the lab, I've translated research into product through startup experience at the intersection of robotics and real-world deployment.
+        I'm currently leading an independent research team of 25 undergrad and grad students building new robotic setups, replicating frontier research and developing our own Video-Action models. (<a href="https://www.linkedin.com/posts/eth-robotics-club_tired-of-folding-laundry-say-no-more-the-activity-7419038243737804803-n3h1?utm_source=share&utm_medium=member_desktop&rcm=ACoAADPEDHIBzwNZiVZnyYpKen7_QXZ6lCVsCnE">See more of what we do</a> or <a href="https://www.ethrobotics.ch/">join us!</a>)
+      </p>
+      <p>
+        When I'm not building robots, you can find me playing football, guitar, learning a new language or learning everything I can doing internships at cool robotic startups!
       </p>
       <div class="contact-panel">
         <p class="contact-line">Email: alejo [at] student [dot] ethz [dot] ch</p>
@@ -470,6 +573,15 @@
 
   <hr>
 
+  <!-- ── Quick facts ── -->
+  <section style="margin-bottom: 1.8rem; font-size: 0.9rem; color: var(--muted); line-height: 2.1; text-align: center;">
+    <p>Born 2/8/2005 &nbsp;🇨🇴&nbsp; &nbsp;·&nbsp; lived in &nbsp;🇺🇸&nbsp; 🇨🇦&nbsp; 🇩🇪&nbsp; 🇨🇭</p>
+    <p>Fluent: &nbsp;🇬🇧 English &nbsp;·&nbsp; 🇪🇸 Spanish &nbsp;·&nbsp; 🇫🇷 French &nbsp;·&nbsp; 🇩🇪 German &nbsp;·&nbsp; 🇨🇭 Swiss German</p>
+    <p style="color:var(--muted); opacity:0.75;">Learning: &nbsp;🇮🇹 Italian &nbsp;·&nbsp; 🇷🇺 Russian</p>
+  </section>
+
+  <hr>
+
   <!-- ── Projects / Research (Lihan Zha card list + Pathak highlights) ── -->
   <section id="projects">
     <p class="section-kicker">Selected work</p>
@@ -477,159 +589,134 @@
 
     <div class="research-list">
 
-      <!-- Featured project — Pathak yellow highlight -->
+      <!-- Featured — current project -->
       <article class="research-card featured">
+        <div class="research-media">
+          <div class="blurred-preview">
+            <img src="humanoid.png" alt="Humanoid setup">
+            <div class="soon-label">Announcing Soon!</div>
+          </div>
+        </div>
+        <div class="research-body">
+          <h3><a href="#">Half-Humanoid Manipulation &amp; Teleoperation Setup with Humanoid Hands</a></h3>
+          <div class="meta-line">
+            <span class="venue-badge">Current</span>
+            <em>2026 &ndash; present</em>
+          </div>
+          <p class="excerpt"><span class="excerpt-label">TL;DR:</span> Building a half-humanoid manipulation and teleoperation setup equipped with dexterous humanoid hands, targeting dexterous long-horizon tasks.</p>
+          <div class="expand-panel">
+            <div class="media-slot">📷 Drop image or gif here</div>
+            <p class="expand-note">More details coming soon.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="research-card">
         <div class="research-media">
           <div class="img-placeholder">🤖</div>
         </div>
         <div class="research-body">
-          <h3><a href="#">Autonomous MAV Navigation in GPS-Denied Environments</a></h3>
+          <h3><a href="#">Autonomous Towel Folding — Finetuning ACT on a Bimanual Setup</a></h3>
           <div class="meta-line">
-            <span class="venue-badge">Research</span>
-            <em>Autonomous Systems Lab · ETH Zurich</em>
+            <span class="venue-badge">Robot Learning</span>
+            <em>ETH Robotics Club &nbsp;·&nbsp; 2025</em>
           </div>
-          <div class="tech-tags">
-            <span class="tech-tag">ROS 2</span>
-            <span class="tech-tag">C++</span>
-            <span class="tech-tag">VIO</span>
-            <span class="tech-tag">SLAM</span>
-            <span class="tech-tag">PyTorch</span>
-          </div>
+          <p class="excerpt-label" style="font-size:0.875rem; color:var(--muted); margin-bottom:0.3rem;">Project lead &nbsp;·&nbsp; team of 20 students</p>
           <p class="resource-links">
-            <a href="#">Paper</a>
             <a href="#">GitHub</a>
             <a href="#">Video</a>
+            <a href="#">Post</a>
           </p>
-          <p class="excerpt"><span class="excerpt-label">TL;DR:</span> End-to-end pipeline for micro aerial vehicle navigation using visual-inertial odometry and onboard depth estimation. Achieves sub-10 cm drift over 100 m indoor trajectories.</p>
-          <button class="toggle-abstract" onclick="toggleAbstract(this)">▸ Abstract</button>
-          <div class="abstract-text">
-            We present a complete navigation stack for GPS-denied indoor flight, combining a stereo visual-inertial odometry front-end with a lightweight onboard depth network for obstacle avoidance. The system runs in real-time on embedded hardware and has been validated on a custom micro aerial vehicle platform across a range of indoor environments.
+          <p class="excerpt"><span class="excerpt-label">TL;DR:</span> Led a 20-student team finetuning ACT (Action Chunking with Transformers) on a bimanual robot setup to autonomously fold towels — a classic long-horizon manipulation benchmark.</p>
+          <div class="expand-panel">
+            <div style="display:flex;gap:0.6rem;margin-bottom:0.55rem;">
+              <img src="act.gif" alt="ACT towel folding" style="width:50%;border-radius:8px;object-fit:cover;border:1px solid var(--border);">
+              <img src="team.jpg" alt="Project team" style="width:50%;border-radius:8px;object-fit:cover;border:1px solid var(--border);">
+            </div>
+            <p class="expand-note">Finetuned ACT on a custom bimanual setup. Collected demonstration data, trained the policy, and iterated on the hardware setup with a team of 20 across ETH Robotics Club.</p>
           </div>
         </div>
       </article>
 
       <article class="research-card">
         <div class="research-media">
-          <div class="img-placeholder">🦾</div>
+          <div class="img-placeholder">🕹️</div>
         </div>
         <div class="research-body">
-          <h3><a href="#">6-DOF Robotic Arm with Force Feedback</a></h3>
+          <h3><a href="#">6-DOF Robotic Arm with IMU Control</a></h3>
           <div class="meta-line">
             <span class="venue-badge">Hardware</span>
-            <em>ETH Zurich</em>
+            <em>Project Based Learning Lab &nbsp;·&nbsp; ETH Zürich &nbsp;·&nbsp; 2025</em>
           </div>
-          <div class="tech-tags">
-            <span class="tech-tag">C++</span>
-            <span class="tech-tag">STM32</span>
-            <span class="tech-tag">CAN Bus</span>
-            <span class="tech-tag">BLDC</span>
-          </div>
+          <p class="excerpt-label" style="font-size:0.875rem; color:var(--muted); margin-bottom:0.3rem;">Supervisor: Dr. Phillip Meyer</p>
           <p class="resource-links">
             <a href="#">GitHub</a>
             <a href="#">Video</a>
           </p>
-          <p class="excerpt"><span class="excerpt-label">TL;DR:</span> Custom manipulator with torque-controlled joints, real-time impedance control, and haptic feedback for teleoperation tasks.</p>
-          <button class="toggle-abstract" onclick="toggleAbstract(this)">▸ Abstract</button>
-          <div class="abstract-text">
-            A six degree-of-freedom robotic arm designed from the ground up with custom BLDC motor drivers and CAN-bus communication. Impedance control enables compliant interaction and haptic feedback for teleoperation, with all low-level firmware running on STM32 microcontrollers.
+          <p class="excerpt"><span class="excerpt-label">TL;DR:</span> Designed and built a 6-degree-of-freedom robotic arm controlled via IMU — translating human wrist and arm orientation directly into robot joint commands for intuitive teleoperation.</p>
+          <div class="expand-panel">
+            <div style="display:flex;gap:0.6rem;margin-bottom:0.55rem;align-items:flex-start;">
+              <img src="robot%20arm.jpg" alt="Robot arm" style="width:33%;border-radius:8px;object-fit:cover;border:1px solid var(--border);">
+              <img src="robotarm.gif" alt="Robot arm in motion" style="width:34%;border-radius:8px;object-fit:cover;border:1px solid var(--border);">
+              <img src="robotarm2.jpg" alt="Robot arm detail" style="width:33%;border-radius:8px;object-fit:cover;border:1px solid var(--border);">
+            </div>
+            <p class="expand-note">Built for the Project Based Learning Lab at ETH Zürich under Dr. Phillip Meyer. Full mechanical design, firmware, and IMU-to-joint mapping pipeline from scratch.</p>
           </div>
         </div>
       </article>
 
       <article class="research-card">
         <div class="research-media">
-          <div class="img-placeholder">👁</div>
+          <div class="img-placeholder">📐</div>
         </div>
         <div class="research-body">
-          <h3><a href="#">Real-Time Defect Detection for Industrial Inspection</a></h3>
+          <h3><a href="#">Inverse Kinematic Control for a 4-DOF Robot Arm from Scratch</a></h3>
           <div class="meta-line">
-            <span class="venue-badge">ML</span>
-            <em>Industry Project</em>
+            <span class="venue-badge">Thesis</span>
+            <em>MNG Rämibühl &nbsp;·&nbsp; 2024</em>
           </div>
-          <div class="tech-tags">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">YOLOv8</span>
-            <span class="tech-tag">CUDA</span>
-            <span class="tech-tag">TensorRT</span>
+          <p class="award-line">Grade 6/6 — amongst the best theses in the Canton of Zürich</p>
+          <p class="excerpt"><span class="excerpt-label">TL;DR:</span> High school end-thesis: built a 4-DOF robotic arm and implemented inverse kinematics from first principles — awarded the highest possible grade and recognised among the top theses canton-wide.</p>
+          <div class="expand-panel">
+            <iframe src="Microcontroller-Driven%20Robotic%20Arm%20with%20Software%20Integration.docx%20(2).pdf" style="width:100%;height:220px;border:1px solid var(--border);border-radius:8px;margin-bottom:0.55rem;"></iframe>
+            <p class="expand-note">End-of-school thesis at MNG Rämibühl. Designed and fabricated the arm, derived the IK equations analytically, and implemented real-time control — all from scratch.</p>
           </div>
-          <p class="resource-links">
-            <a href="#">GitHub</a>
-          </p>
-          <p class="excerpt"><span class="excerpt-label">TL;DR:</span> Custom YOLOv8 deployed on NVIDIA Jetson for defect detection on a manufacturing line. 45 fps at 98.3% mAP on a held-out test set.</p>
         </div>
       </article>
 
       <article class="research-card">
         <div class="research-media">
-          <div class="img-placeholder">⚡</div>
+          <div class="img-placeholder">⚙️</div>
         </div>
         <div class="research-body">
-          <h3><a href="#">Custom High-Power Motor Driver Stack</a></h3>
+          <h3><a href="#">Real-Time Geometric Inverse Kinematics for a 2-DOF Robotic Linkage</a></h3>
           <div class="meta-line">
-            <span class="venue-badge">PCB</span>
-            <em>ETH Zurich</em>
+            <span class="venue-badge">Algorithm</span>
+            <em>2021</em>
           </div>
-          <div class="tech-tags">
-            <span class="tech-tag">KiCad</span>
-            <span class="tech-tag">STM32</span>
-            <span class="tech-tag">FOC</span>
-            <span class="tech-tag">Power Electronics</span>
+          <p class="excerpt"><span class="excerpt-label">TL;DR:</span> Implemented a real-time, closed-form geometric IK solver for a 2-DOF planar robotic linkage — first foray into robotics kinematics.</p>
+          <div class="expand-panel">
+            <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px;margin-bottom:0.55rem;">
+              <iframe src="https://www.youtube.com/embed/BGVK2FOS8_U" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" allowfullscreen></iframe>
+            </div>
+            <p class="expand-note">Pure geometric approach — no iterative solver. Computes exact joint angles from end-effector position in closed form for a planar 2-link chain.</p>
           </div>
-          <p class="resource-links">
-            <a href="#">GitHub</a>
-          </p>
-          <p class="excerpt"><span class="excerpt-label">TL;DR:</span> 4-layer PCB with integrated gate driver, current sensing, and CAN interface for BLDC motors up to 50 A continuous with field-oriented control.</p>
         </div>
       </article>
 
-      <article class="research-card">
-        <div class="research-media">
-          <div class="img-placeholder">🗺</div>
-        </div>
-        <div class="research-body">
-          <h3><a href="#">LiDAR-Inertial SLAM on Legged Robot</a></h3>
-          <div class="meta-line">
-            <span class="venue-badge">Research</span>
-            <em>Autonomous Systems Lab · ETH Zurich</em>
-          </div>
-          <div class="tech-tags">
-            <span class="tech-tag">C++</span>
-            <span class="tech-tag">LiDAR</span>
-            <span class="tech-tag">IMU Fusion</span>
-            <span class="tech-tag">ROS 2</span>
-          </div>
-          <p class="resource-links">
-            <a href="#">Paper</a>
-            <a href="#">GitHub</a>
-          </p>
-          <p class="excerpt"><span class="excerpt-label">TL;DR:</span> Tightly-coupled LiDAR-IMU odometry integrated onto ANYmal C for large-scale 3D mapping in unstructured outdoor terrain.</p>
-        </div>
-      </article>
-
-      <article class="research-card">
-        <div class="research-media">
-          <div class="img-placeholder">🧠</div>
-        </div>
-        <div class="research-body">
-          <h3><a href="#">Sim-to-Real Locomotion Policy Transfer</a></h3>
-          <div class="meta-line">
-            <span class="venue-badge">Simulation</span>
-            <em>ETH Zurich</em>
-          </div>
-          <div class="tech-tags">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">Isaac Gym</span>
-            <span class="tech-tag">RL</span>
-            <span class="tech-tag">PyTorch</span>
-          </div>
-          <p class="resource-links">
-            <a href="#">GitHub</a>
-            <a href="#">Video</a>
-          </p>
-          <p class="excerpt"><span class="excerpt-label">TL;DR:</span> Trained a reinforcement learning locomotion policy in Isaac Gym and transferred it zero-shot to a quadruped. Domain randomization study included.</p>
-        </div>
-      </article>
-
+    </div>
+    <div style="margin-top: 2rem; padding: 1rem 1.2rem; background: var(--bg-alt); border-radius: 8px; border: 1px solid var(--border);">
+      <p style="font-family: var(--font-head); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 0.6rem;">Robotic setups I've worked with</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.4rem;">
+        <span class="setup-pill">Unitree Go2<div class="setup-popup"><img src="unitreego2.jpg" alt="Unitree Go2"></div></span>
+        <span class="setup-pill">Unitree G1<div class="setup-popup"><img src="go1.jpg" alt="Unitree G1"></div></span>
+        <span class="setup-pill">Inspire Hands<div class="setup-popup"><img src="inspire%20hands.jpg" alt="Inspire Hands"></div></span>
+        <span class="setup-pill">Orca Hands<div class="setup-popup"><img src="orca.png" alt="Orca Hands"></div></span>
+        <span class="setup-pill">ANYmal<div class="setup-popup"><img src="anymal.jpg" alt="ANYmal"></div></span>
+        <span class="setup-pill">YAM Arms<div class="setup-popup"><video src="IMG_0998%20(1)%20(1).mov" autoplay loop muted playsinline></video></div></span>
+        <span class="setup-pill">Piper Arms<div class="setup-popup"><img src="piper.jpg" alt="Piper Arms"></div></span>
+        <span class="setup-pill">Custom setups</span>
+      </div>
     </div>
   </section>
 
@@ -643,62 +730,79 @@
     <div class="timeline">
 
       <div class="entry row">
-        <div class="timespan">Feb 2026 &ndash;</div>
+        <div class="timespan">Feb 2026 &ndash;<br><em style="font-size:0.8rem">Jul 2026 est.</em></div>
         <div class="ico">
           <div class="entry-dot"></div>
-          <div class="org-logo-placeholder">🧠</div>
+          <img src="microagi.jpg" alt="MicroAGI">
         </div>
         <div class="entry-desc">
           <div class="entry-role">Hardware Intern</div>
-          <div class="entry-org">microAGI</div>
+          <div class="entry-org">MicroAGI &nbsp;·&nbsp; Zürich</div>
+          <div class="entry-body">
+            First intern at one of the fastest-growing robotics startups in Europe. Fully responsible for the design, iteration, and production of ego-centric data collection devices shipped in the hundreds of thousands worldwide. Work spans hardware and PCB design, sourcing of standard components, and navigating safety standards for human-worn devices. 15th overall hire on an 80-person team.
+          </div>
+          <div class="expand-panel">
+            <div class="media-slot">📷 Drop image or gif here</div>
+            <p class="expand-note">Ego-centric data collection hardware designed for human wearability and mass production. Full ownership from schematic to final BOM and factory handoff.</p>
+          </div>
         </div>
       </div>
 
       <div class="entry row">
-        <div class="timespan">Sep 2025 &ndash;</div>
+        <div class="timespan">2025 &ndash;</div>
         <div class="ico">
           <div class="entry-dot"></div>
-          <div class="org-logo-placeholder">🤖</div>
+          <img src="ethrc.jpg" alt="ETH Robotics Club">
         </div>
         <div class="entry-desc">
-          <div class="entry-role">Lead, Robot Learning Division</div>
-          <div class="entry-org">ETH Robotics Student Network</div>
+          <div class="entry-role">Founding Member &amp; Lead, Robot Learning Division</div>
+          <div class="entry-org">ETH Robotics Club &nbsp;·&nbsp; ETH Zürich</div>
+          <div class="entry-body">
+            Founding member of the largest student robotics club in Europe. Helped raise over 1M CHF in funding, enabling 300+ students to pursue robotics projects. Leading the Robot Learning division — a team of 25 students building new robotic platforms and training our own models for difficult, long-horizon manipulation tasks.
+          </div>
+          <div class="expand-panel">
+            <div class="media-slot">📷 Drop image or gif here</div>
+            <p class="expand-note">Active projects span bimanual manipulation, legged locomotion, and Video-Action model training. Platforms include Unitree G1, YAM Arms, Piper Arms, and custom builds.</p>
+          </div>
         </div>
       </div>
 
       <div class="entry row">
-        <div class="timespan">FS26</div>
+        <div class="timespan">HS26 &amp; FS26</div>
         <div class="ico">
           <div class="entry-dot"></div>
-          <div class="org-logo-placeholder">📡</div>
+          <img src="eth.jpg" alt="ETH Zürich">
         </div>
         <div class="entry-desc">
-          <div class="entry-role">Teaching Assistant — Networks &amp; Circuits</div>
-          <div class="entry-org">ETH Zurich</div>
+          <div class="entry-role">Teaching Assistant</div>
+          <div class="entry-org">ETH Zürich</div>
+          <div class="entry-body">
+            Teaching the following courses to 50+ students:<br>
+            <em>Digitaltechnik</em> (HS26) &nbsp;·&nbsp; <em>Netzwerke und Schaltungen II</em> (FS26)
+          </div>
+          <div class="expand-panel">
+            <div class="media-slot">📷 Drop image or gif here</div>
+            <p class="expand-note">Weekly exercise sessions, exam preparation, and student support for core EE curriculum courses at ETH Zürich.</p>
+          </div>
         </div>
       </div>
 
       <div class="entry row">
-        <div class="timespan">HS25</div>
+        <div class="timespan">2025</div>
         <div class="ico">
           <div class="entry-dot"></div>
-          <div class="org-logo-placeholder">💡</div>
-        </div>
-        <div class="entry-desc">
-          <div class="entry-role">Teaching Assistant — Digital Circuits</div>
-          <div class="entry-org">ETH Zurich</div>
-        </div>
-      </div>
-
-      <div class="entry row">
-        <div class="timespan">Jul 2025 &ndash; Feb 2026</div>
-        <div class="ico">
-          <div class="entry-dot"></div>
-          <div class="org-logo-placeholder">🦾</div>
+          <img src="ascento.jpg" alt="Ascento Robotics">
         </div>
         <div class="entry-desc">
           <div class="entry-role">Robotics Intern</div>
-          <div class="entry-org">Ascento Robotics · Zürich</div>
+          <div class="entry-org">Ascento Robotics AG &nbsp;·&nbsp; Zürich</div>
+          <div class="entry-body">
+            Worked on security robots — responsible for remote technical debugging, customer support, and keeping the robot fleet operational. Also supported assembly and testing of new units. Signed my name on the 100th robot produced. 🎉
+          </div>
+          <div class="expand-panel">
+            <div class="media-slot">📷 Drop image or gif here</div>
+            <p class="expand-note">Ascento builds wheeled-legged security robots deployed in real commercial environments. Hands-on exposure to production-grade robotics at scale.</p>
+          </div>
         </div>
       </div>
 
@@ -714,16 +818,32 @@
 
     <ul class="awards-list">
       <li>
+        <span class="newsdate">2025</span>
+        <span class="newscontent">Google SWE Summer Internship offer. <i>Not accepted — not robotics enough :/</i></span>
+      </li>
+      <li>
+        <span class="newsdate">2025</span>
+        <span class="newscontent">Top 10% of cohort, ETH Zürich.</span>
+      </li>
+      <li>
         <span class="newsdate">2024</span>
-        <span class="newscontent">Dean's List, ETH Zurich Department of Electrical Engineering.</span>
+        <span class="newscontent">Outstanding High School Thesis, MNG Rämibühl. <i>Maximum grade 6/6, amongst the best theses in the Canton of Zürich.</i></span>
       </li>
       <li>
-        <span class="newsdate">2023</span>
-        <span class="newscontent">Best Poster Award, ETH Zurich Autonomous Systems Symposium.</span>
+        <span class="newsdate">2019</span>
+        <span class="newscontent"><img src="imo.png" alt="IMO" style="height:16px;width:16px;object-fit:contain;vertical-align:middle;margin-right:5px;border-radius:3px;">IMO Qualification &mdash; 11th overall, Colombia.</span>
       </li>
       <li>
-        <span class="newsdate">2022</span>
-        <span class="newscontent">Excellence Scholarship, ETH Zurich. <i>Merit-based award for outstanding academic performance.</i></span>
+        <span class="newsdate">2019</span>
+        <span class="newscontent"><img src="udea.png" alt="National Olympiad" style="height:16px;width:16px;object-fit:contain;vertical-align:middle;margin-right:5px;border-radius:3px;">1st place, National Mathematics Olympiad, Colombia.</span>
+      </li>
+      <li>
+        <span class="newsdate">2018</span>
+        <span class="newscontent"><img src="udea.png" alt="National Olympiad" style="height:16px;width:16px;object-fit:contain;vertical-align:middle;margin-right:5px;border-radius:3px;">1st place, National Mathematics Olympiad, Colombia.</span>
+      </li>
+      <li>
+        <span class="newsdate">2017</span>
+        <span class="newscontent"><img src="udea.png" alt="National Olympiad" style="height:16px;width:16px;object-fit:contain;vertical-align:middle;margin-right:5px;border-radius:3px;">3rd place, National Mathematics Olympiad, Colombia.</span>
       </li>
     </ul>
   </section>
