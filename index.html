@@ -6,6 +6,8 @@
   <title>Alejo Restrepo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js" crossorigin="anonymous"></script>
+  <style>img.emoji { height:1em; width:1em; margin:0 .05em 0 .1em; vertical-align:-0.1em; display:inline; }</style>
   <style>
     /* ── Design sources ────────────────────────────────────────────────────────
        Layout & card structure : Lihan Zha  (lihzha.github.io)
@@ -634,7 +636,7 @@
           <div class="expand-panel">
             <div style="display:flex;gap:0.6rem;margin-bottom:0.55rem;">
               <img src="torso.jpg" alt="Humanoid torso" style="width:50%;border-radius:8px;object-fit:cover;border:1px solid var(--border);">
-              <img src="hand.jpg" alt="Humanoid hand" style="width:50%;border-radius:8px;object-fit:cover;border:1px solid var(--border);">
+              <img src="orca.png" alt="Orca hand" style="width:50%;border-radius:8px;object-fit:cover;border:1px solid var(--border);">
             </div>
             <p class="expand-note">More details coming soon.</p>
           </div>
@@ -643,7 +645,7 @@
 
       <article class="research-card">
         <div class="research-media">
-          <video src="IMG_7951.mov" autoplay loop muted playsinline style="width:200px;border-radius:10px;border:1px solid var(--border);object-fit:cover;display:block;"></video>
+          <img src="bimanual_setup.jpg" alt="Bimanual setup" style="width:200px;height:130px;border-radius:10px;object-fit:cover;border:1px solid var(--border);display:block;">
         </div>
         <div class="research-body">
           <h3><a href="#">Autonomous Towel Folding — Finetuning ACT on a Bimanual Setup</a> <span class="expand-indicator">▾</span></h3>
@@ -697,7 +699,7 @@
 
       <article class="research-card">
         <div class="research-media">
-          <img src="robot%20arm.jpg" alt="4-DOF Robot Arm" style="width:200px;height:130px;border-radius:10px;object-fit:cover;border:1px solid var(--border);">
+          <img src="small_robot.jpg" alt="4-DOF Robot Arm" style="width:200px;height:130px;border-radius:10px;object-fit:cover;border:1px solid var(--border);">
         </div>
         <div class="research-body">
           <h3><a href="#">Inverse Kinematic Control for a 4-DOF Robot Arm from Scratch</a> <span class="expand-indicator">▾</span></h3>
@@ -720,7 +722,7 @@
 
       <article class="research-card">
         <div class="research-media">
-          <div class="img-placeholder">⚙️</div>
+          <img src="smaller_robot.jpg" alt="2-DOF Robotic Linkage" style="width:200px;height:130px;border-radius:10px;object-fit:cover;border:1px solid var(--border);">
         </div>
         <div class="research-body">
           <h3><a href="#">Real-Time Geometric Inverse Kinematics for a 2-DOF Robotic Linkage</a> <span class="expand-indicator">▾</span></h3>
@@ -749,13 +751,13 @@
         <span class="setup-pill">ANYmal<div class="setup-popup"><img src="anymal.jpg" alt="ANYmal"></div></span>
         <span class="setup-pill">YAM Arms<div class="setup-popup"><video src="IMG_0998%20(1)%20(1).mov" autoplay loop muted playsinline></video></div></span>
         <span class="setup-pill">Piper Arms<div class="setup-popup"><img src="piper.jpg" alt="Piper Arms"></div></span>
-        <span class="setup-pill">Ascento Coco<div class="setup-popup"><video src="ascentovid.mp4" autoplay loop muted playsinline></video></div></span>
-        <span class="setup-pill">Custom setups<div class="setup-popup" style="width:220px;">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:4px;">
-            <img src="humanoid.png" alt="Humanoid" style="width:100%;height:70px;object-fit:cover;border-radius:4px;">
-            <video src="IMG_7951.mov" autoplay loop muted playsinline style="width:100%;height:70px;object-fit:cover;border-radius:4px;"></video>
-            <img src="myrobot.jpg" alt="6DOF arm" style="width:100%;height:70px;object-fit:cover;border-radius:4px;">
-            <img src="myelectronics%20setup.jpg" alt="Electronics setup" style="width:100%;height:70px;object-fit:cover;border-radius:4px;">
+        <span class="setup-pill">Ascento Coco<div class="setup-popup"><img src="coco.jpg" alt="Ascento Coco"></div></span>
+        <span class="setup-pill">Custom setups<div class="setup-popup" style="width:224px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:4px;background:var(--bg);">
+            <img src="humanoid.png" alt="Humanoid" style="width:100%;height:70px;object-fit:cover;border-radius:4px;display:block;">
+            <img src="bimanual_setup.jpg" alt="Bimanual setup" style="width:100%;height:70px;object-fit:cover;border-radius:4px;display:block;">
+            <img src="myrobot.jpg" alt="6DOF arm" style="width:100%;height:70px;object-fit:cover;border-radius:4px;display:block;">
+            <img src="myelectronics%20setup.jpg" alt="Electronics setup" style="width:100%;height:70px;object-fit:cover;border-radius:4px;display:block;">
           </div>
         </div></span>
       </div>
@@ -799,10 +801,9 @@
             Founding member of the largest student robotics club in Europe. Helped raise over 1M CHF in funding, enabling 300+ students to pursue robotics projects. Leading the Robot Learning division — a team of 25 students building new robotic platforms and training our own models for difficult, long-horizon manipulation tasks.
           </div>
           <div class="expand-panel">
-            <div style="display:flex;gap:0.5rem;margin-bottom:0.55rem;flex-wrap:wrap;">
-              <img src="ethrc.jpg" alt="ETH Robotics Club" style="flex:1;min-width:80px;border-radius:8px;object-fit:cover;border:1px solid var(--border);height:90px;">
-              <img src="robotics_club.jpg" alt="Robotics Club" style="flex:1;min-width:80px;border-radius:8px;object-fit:cover;border:1px solid var(--border);height:90px;">
-              <img src="ethrobotics2.jpg" alt="ETH Robotics 2" style="flex:1;min-width:80px;border-radius:8px;object-fit:cover;border:1px solid var(--border);height:90px;">
+            <div style="display:flex;gap:0.5rem;margin-bottom:0.55rem;">
+              <img src="ethrobotics2.jpg" alt="ETH Robotics Club" style="width:50%;border-radius:8px;object-fit:cover;border:1px solid var(--border);height:110px;">
+              <img src="robotics_club.jpg" alt="Robotics Club" style="width:50%;border-radius:8px;object-fit:cover;border:1px solid var(--border);height:110px;">
             </div>
             <p class="expand-note">Active projects span bimanual manipulation, legged locomotion, and Video-Action model training. Platforms include Unitree G1, YAM Arms, Piper Arms, and custom builds.</p>
           </div>
@@ -926,6 +927,9 @@
   }
   window.addEventListener('scroll', updateActive, { passive: true });
   updateActive();
+
+  // ── Twemoji (cross-platform emoji rendering) ──────────────────────────────
+  twemoji.parse(document.body, { folder: 'svg', ext: '.svg' });
 </script>
 
 </body>
