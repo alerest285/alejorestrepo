@@ -501,13 +501,22 @@
       box-shadow: 0 4px 18px rgba(0,0,0,0.14);
       z-index: 100;
     }
+    @media (max-width: 640px) {
+      .setup-popup {
+        bottom: auto;
+        top: calc(100% + 8px);
+      }
+    }
     .setup-popup img, .setup-popup video {
       width: 100%;
       height: 110px;
       object-fit: cover;
       display: block;
     }
-    .setup-pill:hover .setup-popup { display: block; }
+    @media (hover: hover) {
+      .setup-pill:hover .setup-popup { display: block; }
+    }
+    .setup-pill.active .setup-popup { display: block; }
     .setup-pill-lg {
       font-size: 0.85rem;
       padding: 0.35rem 0.85rem;
@@ -1010,6 +1019,19 @@
   }
   window.addEventListener('scroll', updateActive, { passive: true });
   updateActive();
+
+  // ── Setup pill tap support (mobile) ──────────────────────────────────────
+  document.querySelectorAll('.setup-pill').forEach(pill => {
+    pill.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const isActive = this.classList.contains('active');
+      document.querySelectorAll('.setup-pill.active').forEach(p => p.classList.remove('active'));
+      if (!isActive) this.classList.add('active');
+    });
+  });
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.setup-pill.active').forEach(p => p.classList.remove('active'));
+  });
 
   // ── Twemoji (cross-platform emoji rendering) ──────────────────────────────
   twemoji.parse(document.body, { folder: 'svg', ext: '.svg' });
