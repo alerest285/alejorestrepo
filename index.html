@@ -30,6 +30,17 @@
       --font-head:  'Titillium Web', Verdana, Helvetica, sans-serif;
       --font-body:  'Inter', 'Titillium Web', Verdana, sans-serif;
     }
+    [data-theme="dark"] {
+      --bg:         #0f0f0f;
+      --bg-alt:     #1a1a1a;
+      --text:       #e8e8e8;
+      --muted:      #999999;
+      --link:       #5b9cf6;
+      --link-hover: #f09228;
+      --highlight:  #2a2800;
+      --border:     #2e2e2e;
+      --hr-grad:    rgba(255,255,255,0.12);
+    }
 
     /* ── Reset / Base ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -411,7 +422,22 @@
       z-index: 100;
       background: var(--bg);
       border-bottom: 1px solid var(--border);
+      transition: background 0.25s;
     }
+    .theme-toggle {
+      margin-left: auto;
+      align-self: center;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.3rem 0.7rem;
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: var(--muted);
+      transition: border-color 0.2s, color 0.2s;
+      line-height: 1;
+    }
+    .theme-toggle:hover { border-color: var(--link); color: var(--text); }
 
     /* ── Footer ── */
     .site-footer {
@@ -566,6 +592,7 @@
     <a href="#about">About</a>
     <a href="#projects">Projects</a>
     <a href="#experience">Experience</a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
   </nav>
 </div>
 
@@ -890,6 +917,23 @@
 </div><!-- /.page -->
 
 <script>
+  // ── Dark mode toggle ──────────────────────────────────────────────────────
+  const html = document.documentElement;
+  const toggleBtn = document.getElementById('themeToggle');
+  const saved = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const initTheme = saved || (prefersDark ? 'dark' : 'light');
+  html.setAttribute('data-theme', initTheme);
+  toggleBtn.textContent = initTheme === 'dark' ? '☀️' : '🌙';
+
+  toggleBtn.addEventListener('click', () => {
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    const next = isDark ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    toggleBtn.textContent = next === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('theme', next);
+  });
+
   // ── Collapsible abstracts ──────────────────────────────────────────────────
   function toggleAbstract(btn) {
     const block = btn.nextElementSibling;
