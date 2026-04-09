@@ -75,14 +75,14 @@
       padding: 2rem 0 0.5rem;
     }
     .hero-photo img {
-      width: 160px;
-      min-width: 160px;
+      width: 200px;
+      min-width: 200px;
       border-radius: 15px;
       border: 1px solid var(--border);
     }
     .hero-photo .photo-placeholder {
-      width: 160px;
-      min-width: 160px;
+      width: 200px;
+      min-width: 200px;
       height: 200px;
       border-radius: 15px;
       border: 1px solid var(--border);
@@ -481,9 +481,21 @@
     }
     .setup-pill:hover .setup-popup { display: block; }
 
-    /* ── Hover expand panel ── */
+    /* ── Hover/tap expand panel ── */
     .research-card { cursor: pointer; }
     .entry.row { cursor: default; }
+
+    /* Expand indicator chevron */
+    .expand-indicator {
+      display: inline-block;
+      margin-left: 0.4rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      transition: transform 0.3s ease;
+      vertical-align: middle;
+    }
+    .research-card.expanded .expand-indicator,
+    .entry.row.expanded .expand-indicator { transform: rotate(180deg); }
 
     .expand-panel {
       max-height: 0;
@@ -493,9 +505,23 @@
       padding-top: 0;
       margin-top: 0;
     }
-    .research-card:hover .expand-panel,
-    .entry.row:hover .expand-panel {
-      max-height: 700px;
+    /* Desktop hover */
+    @media (hover: hover) {
+      .research-card:hover .expand-panel,
+      .entry.row:hover .expand-panel {
+        max-height: 900px;
+        opacity: 1;
+        padding-top: 0.75rem;
+        margin-top: 0.6rem;
+        border-top: 1px solid var(--border);
+      }
+      .research-card:hover .expand-indicator,
+      .entry.row:hover .expand-indicator { transform: rotate(180deg); }
+    }
+    /* Click/tap toggle (mobile & all) */
+    .research-card.expanded .expand-panel,
+    .entry.row.expanded .expand-panel {
+      max-height: 900px;
       opacity: 1;
       padding-top: 0.75rem;
       margin-top: 0.6rem;
@@ -523,7 +549,8 @@
     /* ── Responsive ── */
     @media (max-width: 640px) {
       .hero-card { flex-direction: column; gap: 1.5rem; }
-      .hero-photo img, .hero-photo .photo-placeholder { width: 120px; min-width: 120px; }
+      .hero-photo img, .hero-photo .photo-placeholder { width: 140px; min-width: 140px; }
+      .hero-card { align-items: center; }
       .research-card { flex-direction: column; gap: 1rem; }
       .research-media, .research-media img, .research-media .img-placeholder { width: 100%; }
       .entry.row { gap: 0.8rem; }
@@ -576,8 +603,8 @@
   <!-- ── Quick facts ── -->
   <section style="margin-bottom: 1.8rem; font-size: 0.9rem; color: var(--muted); line-height: 2.1; text-align: center;">
     <p>Born 2/8/2005 &nbsp;🇨🇴&nbsp; &nbsp;·&nbsp; lived in &nbsp;🇺🇸&nbsp; 🇨🇦&nbsp; 🇩🇪&nbsp; 🇨🇭</p>
-    <p>Fluent: &nbsp;🇬🇧 English &nbsp;·&nbsp; 🇪🇸 Spanish &nbsp;·&nbsp; 🇫🇷 French &nbsp;·&nbsp; 🇩🇪 German &nbsp;·&nbsp; 🇨🇭 Swiss German</p>
-    <p style="color:var(--muted); opacity:0.75;">Learning: &nbsp;🇮🇹 Italian &nbsp;·&nbsp; 🇷🇺 Russian</p>
+    <p>Fluent: &nbsp;🇬🇧 English &nbsp;·&nbsp; 🇪🇸 Spanish &nbsp;·&nbsp; 🇩🇪 German &nbsp;·&nbsp; 🇨🇭 Swiss German</p>
+    <p style="color:var(--muted); opacity:0.75;">Learning: &nbsp;🇫🇷 French &nbsp;·&nbsp; 🇮🇹 Italian &nbsp;·&nbsp; 🇷🇺 Russian</p>
   </section>
 
   <hr>
@@ -598,14 +625,17 @@
           </div>
         </div>
         <div class="research-body">
-          <h3><a href="#">Half-Humanoid Manipulation &amp; Teleoperation Setup with Humanoid Hands</a></h3>
+          <h3><a href="#">Half-Humanoid Manipulation &amp; Teleoperation Setup with Humanoid Hands</a> <span class="expand-indicator">▾</span></h3>
           <div class="meta-line">
             <span class="venue-badge">Current</span>
             <em>2026 &ndash; present</em>
           </div>
           <p class="excerpt"><span class="excerpt-label">TL;DR:</span> Building a half-humanoid manipulation and teleoperation setup equipped with dexterous humanoid hands, targeting dexterous long-horizon tasks.</p>
           <div class="expand-panel">
-            <div class="media-slot">📷 Drop image or gif here</div>
+            <div style="display:flex;gap:0.6rem;margin-bottom:0.55rem;">
+              <img src="torso.jpg" alt="Humanoid torso" style="width:50%;border-radius:8px;object-fit:cover;border:1px solid var(--border);">
+              <img src="hand.jpg" alt="Humanoid hand" style="width:50%;border-radius:8px;object-fit:cover;border:1px solid var(--border);">
+            </div>
             <p class="expand-note">More details coming soon.</p>
           </div>
         </div>
@@ -613,10 +643,10 @@
 
       <article class="research-card">
         <div class="research-media">
-          <div class="img-placeholder">🤖</div>
+          <video src="IMG_7951.mov" autoplay loop muted playsinline style="width:200px;border-radius:10px;border:1px solid var(--border);object-fit:cover;display:block;"></video>
         </div>
         <div class="research-body">
-          <h3><a href="#">Autonomous Towel Folding — Finetuning ACT on a Bimanual Setup</a></h3>
+          <h3><a href="#">Autonomous Towel Folding — Finetuning ACT on a Bimanual Setup</a> <span class="expand-indicator">▾</span></h3>
           <div class="meta-line">
             <span class="venue-badge">Robot Learning</span>
             <em>ETH Robotics Club &nbsp;·&nbsp; 2025</em>
@@ -640,10 +670,10 @@
 
       <article class="research-card">
         <div class="research-media">
-          <div class="img-placeholder">🕹️</div>
+          <img src="myrobot.jpg" alt="6-DOF Robot Arm" style="width:200px;height:130px;border-radius:10px;object-fit:cover;border:1px solid var(--border);">
         </div>
         <div class="research-body">
-          <h3><a href="#">6-DOF Robotic Arm with IMU Control</a></h3>
+          <h3><a href="#">6-DOF Robotic Arm with IMU Control</a> <span class="expand-indicator">▾</span></h3>
           <div class="meta-line">
             <span class="venue-badge">Hardware</span>
             <em>Project Based Learning Lab &nbsp;·&nbsp; ETH Zürich &nbsp;·&nbsp; 2025</em>
@@ -667,10 +697,10 @@
 
       <article class="research-card">
         <div class="research-media">
-          <div class="img-placeholder">📐</div>
+          <img src="robot%20arm.jpg" alt="4-DOF Robot Arm" style="width:200px;height:130px;border-radius:10px;object-fit:cover;border:1px solid var(--border);">
         </div>
         <div class="research-body">
-          <h3><a href="#">Inverse Kinematic Control for a 4-DOF Robot Arm from Scratch</a></h3>
+          <h3><a href="#">Inverse Kinematic Control for a 4-DOF Robot Arm from Scratch</a> <span class="expand-indicator">▾</span></h3>
           <div class="meta-line">
             <span class="venue-badge">Thesis</span>
             <em>MNG Rämibühl &nbsp;·&nbsp; 2024</em>
@@ -678,7 +708,11 @@
           <p class="award-line">Grade 6/6 — amongst the best theses in the Canton of Zürich</p>
           <p class="excerpt"><span class="excerpt-label">TL;DR:</span> High school end-thesis: built a 4-DOF robotic arm and implemented inverse kinematics from first principles — awarded the highest possible grade and recognised among the top theses canton-wide.</p>
           <div class="expand-panel">
-            <iframe src="Microcontroller-Driven%20Robotic%20Arm%20with%20Software%20Integration.docx%20(2).pdf" style="width:100%;height:220px;border:1px solid var(--border);border-radius:8px;margin-bottom:0.55rem;"></iframe>
+            <div style="margin-bottom:0.55rem;">
+              <a href="Microcontroller-Driven%20Robotic%20Arm%20with%20Software%20Integration.docx%20(2).pdf" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.5rem 0.9rem;background:var(--link);color:#fff;border-radius:6px;font-size:0.85rem;font-weight:600;">
+                📄 View Thesis PDF
+              </a>
+            </div>
             <p class="expand-note">End-of-school thesis at MNG Rämibühl. Designed and fabricated the arm, derived the IK equations analytically, and implemented real-time control — all from scratch.</p>
           </div>
         </div>
@@ -689,7 +723,7 @@
           <div class="img-placeholder">⚙️</div>
         </div>
         <div class="research-body">
-          <h3><a href="#">Real-Time Geometric Inverse Kinematics for a 2-DOF Robotic Linkage</a></h3>
+          <h3><a href="#">Real-Time Geometric Inverse Kinematics for a 2-DOF Robotic Linkage</a> <span class="expand-indicator">▾</span></h3>
           <div class="meta-line">
             <span class="venue-badge">Algorithm</span>
             <em>2021</em>
@@ -715,7 +749,15 @@
         <span class="setup-pill">ANYmal<div class="setup-popup"><img src="anymal.jpg" alt="ANYmal"></div></span>
         <span class="setup-pill">YAM Arms<div class="setup-popup"><video src="IMG_0998%20(1)%20(1).mov" autoplay loop muted playsinline></video></div></span>
         <span class="setup-pill">Piper Arms<div class="setup-popup"><img src="piper.jpg" alt="Piper Arms"></div></span>
-        <span class="setup-pill">Custom setups</span>
+        <span class="setup-pill">Ascento Coco<div class="setup-popup"><video src="ascentovid.mp4" autoplay loop muted playsinline></video></div></span>
+        <span class="setup-pill">Custom setups<div class="setup-popup" style="width:220px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:4px;">
+            <img src="humanoid.png" alt="Humanoid" style="width:100%;height:70px;object-fit:cover;border-radius:4px;">
+            <video src="IMG_7951.mov" autoplay loop muted playsinline style="width:100%;height:70px;object-fit:cover;border-radius:4px;"></video>
+            <img src="myrobot.jpg" alt="6DOF arm" style="width:100%;height:70px;object-fit:cover;border-radius:4px;">
+            <img src="myelectronics%20setup.jpg" alt="Electronics setup" style="width:100%;height:70px;object-fit:cover;border-radius:4px;">
+          </div>
+        </div></span>
       </div>
     </div>
   </section>
@@ -741,10 +783,6 @@
           <div class="entry-body">
             First intern at one of the fastest-growing robotics startups in Europe. Fully responsible for the design, iteration, and production of ego-centric data collection devices shipped in the hundreds of thousands worldwide. Work spans hardware and PCB design, sourcing of standard components, and navigating safety standards for human-worn devices. 15th overall hire on an 80-person team.
           </div>
-          <div class="expand-panel">
-            <div class="media-slot">📷 Drop image or gif here</div>
-            <p class="expand-note">Ego-centric data collection hardware designed for human wearability and mass production. Full ownership from schematic to final BOM and factory handoff.</p>
-          </div>
         </div>
       </div>
 
@@ -755,13 +793,17 @@
           <img src="ethrc.jpg" alt="ETH Robotics Club">
         </div>
         <div class="entry-desc">
-          <div class="entry-role">Founding Member &amp; Lead, Robot Learning Division</div>
+          <div class="entry-role">Founding Member &amp; Lead, Robot Learning Division <span class="expand-indicator">▾</span></div>
           <div class="entry-org">ETH Robotics Club &nbsp;·&nbsp; ETH Zürich</div>
           <div class="entry-body">
             Founding member of the largest student robotics club in Europe. Helped raise over 1M CHF in funding, enabling 300+ students to pursue robotics projects. Leading the Robot Learning division — a team of 25 students building new robotic platforms and training our own models for difficult, long-horizon manipulation tasks.
           </div>
           <div class="expand-panel">
-            <div class="media-slot">📷 Drop image or gif here</div>
+            <div style="display:flex;gap:0.5rem;margin-bottom:0.55rem;flex-wrap:wrap;">
+              <img src="ethrc.jpg" alt="ETH Robotics Club" style="flex:1;min-width:80px;border-radius:8px;object-fit:cover;border:1px solid var(--border);height:90px;">
+              <img src="robotics_club.jpg" alt="Robotics Club" style="flex:1;min-width:80px;border-radius:8px;object-fit:cover;border:1px solid var(--border);height:90px;">
+              <img src="ethrobotics2.jpg" alt="ETH Robotics 2" style="flex:1;min-width:80px;border-radius:8px;object-fit:cover;border:1px solid var(--border);height:90px;">
+            </div>
             <p class="expand-note">Active projects span bimanual manipulation, legged locomotion, and Video-Action model training. Platforms include Unitree G1, YAM Arms, Piper Arms, and custom builds.</p>
           </div>
         </div>
@@ -771,7 +813,6 @@
         <div class="timespan">HS26 &amp; FS26</div>
         <div class="ico">
           <div class="entry-dot"></div>
-          <img src="eth.jpg" alt="ETH Zürich">
         </div>
         <div class="entry-desc">
           <div class="entry-role">Teaching Assistant</div>
@@ -779,10 +820,6 @@
           <div class="entry-body">
             Teaching the following courses to 50+ students:<br>
             <em>Digitaltechnik</em> (HS26) &nbsp;·&nbsp; <em>Netzwerke und Schaltungen II</em> (FS26)
-          </div>
-          <div class="expand-panel">
-            <div class="media-slot">📷 Drop image or gif here</div>
-            <p class="expand-note">Weekly exercise sessions, exam preparation, and student support for core EE curriculum courses at ETH Zürich.</p>
           </div>
         </div>
       </div>
@@ -794,13 +831,13 @@
           <img src="ascento.jpg" alt="Ascento Robotics">
         </div>
         <div class="entry-desc">
-          <div class="entry-role">Robotics Intern</div>
+          <div class="entry-role">Robotics Intern <span class="expand-indicator">▾</span></div>
           <div class="entry-org">Ascento Robotics AG &nbsp;·&nbsp; Zürich</div>
           <div class="entry-body">
             Worked on security robots — responsible for remote technical debugging, customer support, and keeping the robot fleet operational. Also supported assembly and testing of new units. Signed my name on the 100th robot produced. 🎉
           </div>
           <div class="expand-panel">
-            <div class="media-slot">📷 Drop image or gif here</div>
+            <img src="ascentome.jpg" alt="Ascento robot" style="width:100%;border-radius:8px;object-fit:cover;border:1px solid var(--border);margin-bottom:0.55rem;max-height:180px;">
             <p class="expand-note">Ascento builds wheeled-legged security robots deployed in real commercial environments. Hands-on exposure to production-grade robotics at scale.</p>
           </div>
         </div>
@@ -856,12 +893,22 @@
 </div><!-- /.page -->
 
 <script>
-  // ── Collapsible abstracts (Deepak Pathak toggleblock style) ──────────────
+  // ── Collapsible abstracts ──────────────────────────────────────────────────
   function toggleAbstract(btn) {
     const block = btn.nextElementSibling;
     const open = block.classList.toggle('open');
     btn.textContent = open ? '▾ Abstract' : '▸ Abstract';
   }
+
+  // ── Click/tap expand panels (for touch devices) ───────────────────────────
+  document.querySelectorAll('.research-card, .entry.row').forEach(card => {
+    if (!card.querySelector('.expand-panel')) return;
+    card.addEventListener('click', function(e) {
+      // Don't toggle when clicking links
+      if (e.target.closest('a') || e.target.closest('button')) return;
+      this.classList.toggle('expanded');
+    });
+  });
 
   // ── Nav scroll-spy ────────────────────────────────────────────────────────
   const navLinks = document.querySelectorAll('.top-nav a');
