@@ -1,75 +1,83 @@
 # 2-Minute Pitch — Robot Learning @ ETH
 
-**Total runtime:** ~2:00 · **Pacing target:** ~155 words/min · **Slides:** 6
-**Open on:** `presentation.html` · arrow keys or click to advance · press `F` for fullscreen
+**Runtime:** ~2:00 · **9 slides, pure visual** · **Open:** `presentation.html`
+`→` / space to advance · `F` fullscreen · slides auto-loop videos
 
 ---
 
-## Slide 1 — Title (0:00 – 0:15) · 15s
+## 1 — Title (0:00 – 0:10) · 10s
 
-> *"Hi — I'm Alejo, and I lead the Robot Learning division of the ETH Robotics Club. We're a team of 25 students at ETH Zürich, and we build dexterous robotic platforms and train our own Video-Action models. Today I want to show you what we've shipped, and where we're going next."*
-
-**On screen:** title slide. Let the headline land for 2 seconds before you speak.
+> *"Hi, I'm Alejo. I lead the Robot Learning division of the ETH Robotics Club. 25 students building robots that can do what humans do without thinking — and training the models to drive them."*
 
 ---
 
-## Slide 2 — The problem (0:15 – 0:33) · 18s
+## 2 — Bimanual video (0:10 – 0:30) · 20s
 
-> *"Here's the gap that drives us. Robots can land rockets. They still can't reliably fold a towel. Dexterous, long-horizon manipulation — the stuff humans do without thinking — is the frontier that classical control doesn't solve. You need real hardware, real data, and learning-based policies. That's exactly what we do."*
+*(let the video play 2 seconds silently before speaking)*
 
-**Advance as you say "reliably fold a towel."**
-
----
-
-## Slide 3 — What we shipped (0:33 – 1:03) · 30s
-
-> *"This is what we shipped in 2025 — autonomous towel folding on a bimanual robot. A team of 20 students built the hardware from scratch, collected our own demonstration data through teleop, and finetuned ACT — Action Chunking with Transformers — on top of it. What you're seeing on the right is the policy running autonomously on a classic long-horizon benchmark. End to end: hardware, data, model, deployment."*
-
-**On screen:** the left video and the ACT gif are auto-playing. Point at the screen when you say "running autonomously."
+> *"This is what we shipped in 2025. A bimanual setup, built from scratch by our team. The robot you're watching is folding a towel autonomously — a classic long-horizon manipulation benchmark."*
 
 ---
 
-## Slide 4 — Next move (1:03 – 1:28) · 25s
+## 3 — ACT gif (0:30 – 0:45) · 15s
 
-> *"That was the warm-up. What we're building now is a half-humanoid platform with dexterous hands — Orca Hands, a bimanual torso, designed from day one for learning. The goal is the hard long-horizon tasks that need real finger-level dexterity. Announcing publicly in a few weeks."*
-
-**Advance when you say "dexterous hands."**
+> *"Under the hood it's ACT — Action Chunking with Transformers — finetuned on our own demonstration data. Our hardware, our data, our policy. End to end."*
 
 ---
 
-## Slide 5 — Why us (1:28 – 1:48) · 20s
+## 4 — Second bimanual angle (0:45 – 0:58) · 13s
 
-> *"Why can we pull this off? We're not a student club in the hobby sense. The ETH Robotics Club is the largest student robotics organization in Europe: over 1M CHF raised, 300+ students in active projects, 25 of them on my team shipping robot learning work. We build, we don't just talk."*
-
-**Advance when you say "pull this off." Let the three big numbers land.**
+> *"Different angle, same run. The key point: nothing here is simulated, nothing is cherry-picked. Real hardware, real folds."*
 
 ---
 
-## Slide 6 — The ask (1:48 – 2:00) · 12s
+## 5 — Team (0:58 – 1:10) · 12s
 
-> *"So — three asks. Hardware partners who want their platform in serious student hands. Compute sponsors for our training runs. And curious builders who want to join the team. My email and the club site are on screen. Thanks."*
-
-**Leave the contact slide up while questions come in.**
+> *"This isn't a two-person side project. 25 students on the Robot Learning team — electronics, ML, mechanical, firmware."*
 
 ---
 
-## Speaker notes
+## 6 — Club (1:10 – 1:22) · 12s
 
-- **Pace:** Don't rush. 2 minutes is longer than it feels — resist the urge to cram.
-- **Advance on the emphasis word** so slide changes feel intentional, not mechanical.
-- **Videos are auto-playing** on Slide 3 — don't talk over the first 2 seconds; let people see the robot move.
-- **If you're asked to go to 3 min:** expand Slide 3 with a sentence on data collection ("we collected ~300 teleop trajectories over two weekends") and Slide 4 with one line on the hand choice.
-- **If you're cut to 90s:** drop Slide 5, shorten Slide 2 to one sentence ("robots can't fold a towel, that's the gap"), keep Slide 3 long.
+> *"And behind us, the ETH Robotics Club — the largest student robotics organization in Europe. Over 300 members, more than a million Swiss francs raised to build real robots."*
 
 ---
+
+## 7 — YAM teleop video (1:22 – 1:35) · 13s
+
+> *"Every policy we train starts here — human teleoperation, collecting the demonstrations. This is the bottleneck we've been solving: data, at scale, on our own hardware."*
+
+---
+
+## 8 — Humanoid (1:35 – 1:50) · 15s
+
+> *"What's next: a half-humanoid platform with dexterous hands. Orca fingers, bimanual torso, designed from day one for learning-based control. Announcing in a few weeks."*
+
+---
+
+## 9 — Close (1:50 – 2:00) · 10s
+
+> *"If you build hardware, host GPUs, or want to join the team — talk to us. Thanks."*
+
+*(Leave the contact slide up while taking questions.)*
+
+---
+
+## Delivery notes
+
+- **Don't rush.** 2:00 feels longer than you think. Breathe between slides.
+- **Advance on the emphasis word,** not on the period. Slide change = punctuation.
+- **Video slides:** give the first 2 seconds silent so people register what they're seeing.
+- **If cut to 90s:** drop slides 4 and 7. Pitch is still coherent.
+- **If expanded to 3:00:** add a data number on slide 5 ("~300 trajectories collected") — **verify the real number first; I don't know it.**
 
 ## Controls cheat sheet
 
-| Key        | Action            |
-|------------|-------------------|
-| `→` / space| Next slide        |
-| `←`        | Previous slide    |
-| `F`        | Fullscreen toggle |
-| `Home`/`End` | First / last    |
-| click right| Next              |
-| click left | Previous          |
+| Key         | Action         |
+|-------------|----------------|
+| `→` / space | Next           |
+| `←`         | Previous       |
+| `F`         | Fullscreen     |
+| `Home`/`End`| First / last   |
+| click right | Next           |
+| click left  | Previous       |
