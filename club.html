@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ETH Robotics Club · Alejo Restrepo</title>
+  <link rel="icon" type="image/jpeg" href="media/myself.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js" crossorigin="anonymous"></script>
+  <style>img.emoji { height:1em; width:1em; margin:0 .05em 0 .1em; vertical-align:-0.1em; display:inline; }</style>
+  <style>
+    :root {
+      --bg: #ffffff; --bg-alt: #f9f9f9;
+      --text: #333333; --muted: #666666;
+      --link: #1772d0; --link-hover: #f09228;
+      --highlight: #ffffd0; --border: #e0e0e0;
+      --hr-grad: rgba(0,0,0,0.18);
+      --font-head: 'Titillium Web', Verdana, Helvetica, sans-serif;
+      --font-body: 'Inter', 'Titillium Web', Verdana, sans-serif;
+    }
+    [data-theme="dark"] {
+      --bg: #0f0f0f; --bg-alt: #1a1a1a;
+      --text: #e8e8e8; --muted: #999999;
+      --link: #5b9cf6; --link-hover: #f09228;
+      --highlight: #2a2800; --border: #2e2e2e;
+      --hr-grad: rgba(255,255,255,0.12);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); font-size: 16px; line-height: 1.7; background: var(--bg); color: var(--text); transition: background 0.25s, color 0.25s; }
+    a { color: var(--link); text-decoration: none; }
+    a:hover, a:focus { color: var(--link-hover); }
+    img, video { display: block; max-width: 100%; }
+    hr { border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0,0,0,0), var(--hr-grad), rgba(0,0,0,0)); margin: 2.4rem 0; }
+    .page { max-width: 900px; margin: 0 auto; padding: 2rem 1.6rem 5rem; }
+
+    .nav-wrapper { position: sticky; top: 0; z-index: 100; background: var(--bg); border-bottom: 1px solid var(--border); transition: background 0.25s; }
+    .top-nav { display: flex; gap: 0; padding: 0 1.6rem; max-width: 900px; margin: 0 auto; }
+    .top-nav a { font-family: var(--font-head); font-size: 0.88rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; padding: 0.75rem 1.1rem; border-bottom: 2px solid transparent; transition: color 0.15s, border-color 0.15s; }
+    .top-nav a:hover { color: var(--link); border-bottom-color: var(--link); }
+    .theme-toggle { margin-left: auto; align-self: center; background: none; border: 1px solid var(--border); border-radius: 20px; padding: 0.3rem 0.7rem; cursor: pointer; font-size: 0.85rem; color: var(--muted); transition: border-color 0.2s, color 0.2s; line-height: 1; }
+    .theme-toggle:hover { border-color: var(--link); color: var(--text); }
+
+    .back-link { font-family: var(--font-head); font-size: 0.82rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.5rem; display: inline-block; }
+    .back-link:hover { color: var(--link); }
+
+    .section-kicker { font-family: var(--font-head); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 0.4rem; }
+    .page-title { font-family: var(--font-head); font-size: 2.6rem; font-weight: 600; line-height: 1.1; color: var(--text); margin-bottom: 0.3rem; }
+    .page-subtitle { font-family: var(--font-head); font-size: 1.2rem; color: var(--muted); margin-bottom: 1rem; font-weight: 300; }
+
+    .meta-line { display: flex; align-items: center; flex-wrap: wrap; gap: 0.4rem; font-size: 0.9rem; color: var(--muted); margin-bottom: 0.9rem; }
+    .venue-badge { display: inline-block; background: var(--link); color: #fff; font-size: 0.72rem; font-weight: 600; padding: 0.1rem 0.48rem; border-radius: 4px; letter-spacing: 0.02em; }
+
+    .resource-links { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+    .resource-links a { display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.4rem 1rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.875rem; font-weight: 500; transition: border-color 0.2s, color 0.2s; }
+    .resource-links a:hover { border-color: var(--link); color: var(--link); }
+
+    /* Stats bar */
+    .stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin: 0 0 2.5rem; background: var(--bg-alt); }
+    .stat-block { padding: 1.4rem 1rem; text-align: center; border-right: 1px solid var(--border); }
+    .stat-block:last-child { border-right: none; }
+    .stat-num { font-family: var(--font-head); font-size: 2.2rem; font-weight: 600; color: var(--link); line-height: 1; display: block; margin-bottom: 0.3rem; }
+    .stat-lbl { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+
+    /* Hero media */
+    .hero-media-wrap { border-radius: 14px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 0.5rem; background: var(--bg-alt); }
+    .hero-media-wrap img { width: 100%; max-height: 420px; object-fit: cover; display: block; }
+    .media-caption { font-size: 0.82rem; color: var(--muted); text-align: center; margin-bottom: 2.5rem; font-style: italic; }
+
+    /* Chapters */
+    .chapter { margin-top: 3rem; }
+    .chapter-head { display: flex; align-items: baseline; gap: 0.75rem; border-bottom: 1px solid var(--border); padding-bottom: 0.6rem; margin-bottom: 1.2rem; }
+    .chapter-n { font-family: var(--font-head); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--link); opacity: 0.6; flex-shrink: 0; }
+    .chapter-head h2 { font-family: var(--font-head); font-size: 1.5rem; font-weight: 600; color: var(--text); }
+
+    /* Prose */
+    .prose p { margin-bottom: 1rem; color: var(--text); line-height: 1.75; }
+    .prose ul { list-style: disc; padding-left: 1.3rem; margin-bottom: 1rem; color: var(--text); }
+    .prose ul li { margin-bottom: 0.35rem; line-height: 1.7; }
+
+    /* Callout */
+    .callout { padding: 1rem 1.15rem; border-left: 3px solid var(--link); background: var(--bg-alt); border-radius: 0 8px 8px 0; font-size: 0.95rem; margin: 1.2rem 0; color: var(--text); line-height: 1.75; }
+    .callout strong { color: var(--text); }
+
+    /* Media grid */
+    .media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem; }
+    .media-grid img, .media-grid video { width: 100%; border-radius: 10px; border: 1px solid var(--border); object-fit: cover; aspect-ratio: 16/9; }
+
+    /* Division card */
+    .division-card { padding: 1.4rem; background: var(--highlight); border-radius: 12px; border: 1px solid var(--border); margin: 1.2rem 0; }
+    .division-card .div-label { font-family: var(--font-head); font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--link); margin-bottom: 0.35rem; display: block; }
+    .division-card h3 { font-family: var(--font-head); font-size: 1.15rem; font-weight: 600; color: var(--text); margin-bottom: 0.6rem; }
+    .division-card p { font-size: 0.9rem; color: var(--text); margin-bottom: 0.6rem; line-height: 1.7; }
+    .division-card ul { list-style: disc; padding-left: 1.3rem; color: var(--text); font-size: 0.9rem; }
+    .division-card ul li { margin-bottom: 0.3rem; }
+
+    /* Project cards */
+    .project-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.2rem 0; }
+    .project-card { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--bg-alt); transition: border-color 0.2s; display: block; color: inherit; text-decoration: none; }
+    .project-card:hover { border-color: var(--link); }
+    .project-card img, .project-card video { width: 100%; height: 150px; object-fit: cover; display: block; }
+    .project-card-body { padding: 0.9rem 1rem; }
+    .project-card-body .badge { display: inline-block; background: var(--link); color: #fff; font-size: 0.68rem; font-weight: 600; padding: 0.08rem 0.4rem; border-radius: 3px; letter-spacing: 0.02em; margin-bottom: 0.4rem; }
+    .project-card-body h4 { font-family: var(--font-head); font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 0.3rem; line-height: 1.4; }
+    .project-card-body p { font-size: 0.82rem; color: var(--muted); line-height: 1.55; margin: 0; }
+
+    /* Robot grid */
+    .robot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin: 1.2rem 0; }
+    .robot-cell { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--bg-alt); }
+    .robot-cell img { width: 100%; height: 120px; object-fit: cover; display: block; }
+    .robot-cell .robot-label { padding: 0.45rem 0.6rem; font-size: 0.8rem; font-weight: 500; color: var(--text); text-align: center; border-top: 1px solid var(--border); }
+
+    /* Join card */
+    .join-card { margin-top: 3rem; padding: 2.2rem; background: var(--link); border-radius: 14px; text-align: center; }
+    .join-card h2 { font-family: var(--font-head); font-size: 1.9rem; font-weight: 600; color: #fff; margin-bottom: 0.5rem; }
+    .join-card p { font-size: 1rem; color: rgba(255,255,255,0.82); margin-bottom: 1.3rem; }
+    .join-btn { display: inline-block; padding: 0.65rem 1.9rem; background: #fff; color: var(--link); border-radius: 8px; font-weight: 600; font-family: var(--font-head); font-size: 0.95rem; transition: opacity 0.2s; }
+    .join-btn:hover { opacity: 0.88; color: var(--link); }
+
+    .site-footer { text-align: center; padding: 2rem 0 0.5rem; font-size: 0.82rem; color: var(--muted); }
+
+    @media (max-width: 640px) {
+      .page-title { font-size: 2rem; }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .stat-block:nth-child(2) { border-right: none; }
+      .stat-block:nth-child(3), .stat-block:nth-child(4) { border-top: 1px solid var(--border); }
+      .stat-block:nth-child(3) { border-right: 1px solid var(--border); }
+      .media-grid, .project-cards, .robot-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="nav-wrapper">
+  <nav class="top-nav">
+    <a href="index.html#about">About</a>
+    <a href="index.html#projects">Projects</a>
+    <a href="index.html#experience">Experience</a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+  </nav>
+</div>
+
+<div class="page">
+  <a href="index.html#experience" class="back-link">← Back</a>
+
+  <p class="section-kicker">Student Organization · ETH Zürich · 2025 – present</p>
+  <h1 class="page-title">ETH Robotics Club</h1>
+  <p class="page-subtitle">The largest student robotics club in Europe</p>
+
+  <div class="meta-line">
+    <span class="venue-badge">Founding Member</span>
+    <span class="venue-badge" style="background: var(--link-hover);">Lead — Robot Learning</span>
+  </div>
+
+  <div class="resource-links">
+    <a href="https://www.ethrobotics.ch/" target="_blank">Club Website</a>
+    <a href="https://www.linkedin.com/posts/eth-robotics-club_tired-of-folding-laundry-say-no-more-the-activity-7419038243737804803-n3h1?utm_source=share&utm_medium=member_desktop&rcm=ACoAADPEDHIBzwNZiVZnyYpKen7_QXZ6lCVsCnE" target="_blank">LinkedIn</a>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-block">
+      <span class="stat-num">300+</span>
+      <span class="stat-lbl">Students</span>
+    </div>
+    <div class="stat-block">
+      <span class="stat-num">1M+</span>
+      <span class="stat-lbl">CHF raised</span>
+    </div>
+    <div class="stat-block">
+      <span class="stat-num">25</span>
+      <span class="stat-lbl">Robot Learning team</span>
+    </div>
+    <div class="stat-block">
+      <span class="stat-num">2025</span>
+      <span class="stat-lbl">Founded</span>
+    </div>
+  </div>
+
+  <div class="hero-media-wrap">
+    <img src="media/ethrobotics2.jpg" alt="ETH Robotics Club members in action">
+  </div>
+  <p class="media-caption">ETH Robotics Club members working on robots in the lab.</p>
+
+  <div class="callout">
+    <strong>What it is —</strong> The ETH Robotics Club brings together 300+ students from across ETH Zürich to build real robots, replicate frontier research, and do things that student teams aren't supposed to be able to do. With 1M+ CHF in funding, we run a fully-equipped lab and operate a fleet of cutting-edge platforms.
+  </div>
+
+  <!-- Chapter 1 -->
+  <div class="chapter">
+    <div class="chapter-head">
+      <span class="chapter-n">01</span>
+      <h2>What we do</h2>
+    </div>
+    <div class="prose">
+      <p>
+        We give students access to robots they'd otherwise only read about in papers — and we actually build things with them. Projects span the full robotics stack: hardware design and fabrication, firmware, perception, planning, control, and learning.
+      </p>
+      <p>
+        Active work spans <strong>bimanual manipulation</strong>, <strong>legged locomotion</strong>, <strong>dexterous grasping</strong>, and training <strong>Video-Action models</strong> on our own data. Every project is student-owned, end-to-end.
+      </p>
+    </div>
+    <div class="media-grid">
+      <img src="media/robotics_club.jpg" alt="Club members">
+      <img src="media/team.jpg" alt="Robot Learning team">
+    </div>
+    <p class="media-caption">Club members and the Robot Learning project team.</p>
+  </div>
+
+  <!-- Chapter 2 -->
+  <div class="chapter">
+    <div class="chapter-head">
+      <span class="chapter-n">02</span>
+      <h2>Robot Learning Division</h2>
+    </div>
+    <div class="division-card">
+      <span class="div-label">Led by Alejo Restrepo</span>
+      <h3>25 students. Real robots. Real models.</h3>
+      <p>The Robot Learning division builds new robotic setups from scratch, collects teleoperated demonstration data, and trains imitation learning and video-action policies — targeting long-horizon dexterous manipulation tasks that are genuinely hard.</p>
+      <ul>
+        <li>Building and iterating on hardware platforms</li>
+        <li>Collecting high-quality teleoperated demo datasets</li>
+        <li>Training and finetuning imitation learning policies</li>
+        <li>Pushing toward Video-Action models on our own data</li>
+      </ul>
+    </div>
+    <div class="prose">
+      <p>
+        Our first project — finetuning ACT for autonomous towel folding on a custom bimanual setup — shipped at the end of the 2025 semester. The next platform is a half-humanoid setup with dexterous hands, currently in development.
+      </p>
+    </div>
+  </div>
+
+  <!-- Chapter 3 -->
+  <div class="chapter">
+    <div class="chapter-head">
+      <span class="chapter-n">03</span>
+      <h2>Our Projects</h2>
+    </div>
+    <div class="project-cards">
+      <a href="bimanual.html" class="project-card">
+        <img src="media/act.gif" alt="Bimanual ACT towel folding">
+        <div class="project-card-body">
+          <span class="badge">Robot Learning</span>
+          <h4>Autonomous Towel Folding — ACT on Bimanual Setup</h4>
+          <p>Finetuned Action Chunking with Transformers to fold towels autonomously. 20 students, custom hardware, and a working policy.</p>
+        </div>
+      </a>
+      <div class="project-card" style="cursor:default;">
+        <img src="media/humanoid.png" alt="Half-humanoid" style="filter:blur(4px); height:150px; object-fit:cover;">
+        <div class="project-card-body">
+          <span class="badge" style="background:#999;">Announcing Soon</span>
+          <h4>Half-Humanoid Manipulation Setup</h4>
+          <p>A dexterous half-humanoid platform with humanoid hands — targeting long-horizon manipulation beyond what grippers can do.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chapter 4 -->
+  <div class="chapter">
+    <div class="chapter-head">
+      <span class="chapter-n">04</span>
+      <h2>Robots we operate</h2>
+    </div>
+    <div class="robot-grid">
+      <div class="robot-cell">
+        <img src="media/go1.jpg" alt="Unitree G1">
+        <div class="robot-label">Unitree G1</div>
+      </div>
+      <div class="robot-cell">
+        <img src="media/unitreego2.jpg" alt="Unitree Go2">
+        <div class="robot-label">Unitree Go2</div>
+      </div>
+      <div class="robot-cell">
+        <img src="media/anymal.jpg" alt="ANYmal">
+        <div class="robot-label">ANYmal</div>
+      </div>
+      <div class="robot-cell">
+        <img src="media/bimanual_setup.jpg" alt="YAM Arms">
+        <div class="robot-label">YAM Arms</div>
+      </div>
+      <div class="robot-cell">
+        <img src="media/piper.jpg" alt="Piper Arms">
+        <div class="robot-label">Piper Arms</div>
+      </div>
+      <div class="robot-cell">
+        <img src="media/coco.jpg" alt="Ascento Coco">
+        <div class="robot-label">Ascento Coco</div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="join-card">
+    <h2>Want to join us?</h2>
+    <p>300+ students. Real robots. Real research. We're always looking for motivated people.</p>
+    <a href="https://www.ethrobotics.ch/" target="_blank" class="join-btn">Visit ethrobotics.ch →</a>
+  </div>
+
+  <footer class="site-footer"></footer>
+</div>
+
+<script>
+  const html = document.documentElement;
+  const toggleBtn = document.getElementById('themeToggle');
+  const saved = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const initTheme = saved || (prefersDark ? 'dark' : 'light');
+  html.setAttribute('data-theme', initTheme);
+  toggleBtn.textContent = initTheme === 'dark' ? '☀️' : '🌙';
+  toggleBtn.addEventListener('click', () => {
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    const next = isDark ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    toggleBtn.textContent = next === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('theme', next);
+  });
+  twemoji.parse(document.body, { folder: 'svg', ext: '.svg' });
+</script>
+</body>
+</html>

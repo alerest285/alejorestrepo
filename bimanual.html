@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Autonomous Towel Folding — Finetuning ACT · Alejo Restrepo</title>
+  <title>Autonomous Towel Folding — ACT · Alejo Restrepo</title>
   <link rel="icon" type="image/jpeg" href="media/myself.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -11,266 +11,124 @@
   <style>img.emoji { height:1em; width:1em; margin:0 .05em 0 .1em; vertical-align:-0.1em; display:inline; }</style>
   <style>
     :root {
-      --bg:         #ffffff;
-      --bg-alt:     #f9f9f9;
-      --text:       #333333;
-      --muted:      #666666;
-      --link:       #1772d0;
-      --link-hover: #f09228;
-      --highlight:  #ffffd0;
-      --border:     #e0e0e0;
-      --hr-grad:    rgba(0,0,0,0.18);
-      --font-head:  'Titillium Web', Verdana, Helvetica, sans-serif;
-      --font-body:  'Inter', 'Titillium Web', Verdana, sans-serif;
+      --bg: #ffffff; --bg-alt: #f9f9f9;
+      --text: #333333; --muted: #666666;
+      --link: #1772d0; --link-hover: #f09228;
+      --highlight: #ffffd0; --border: #e0e0e0;
+      --hr-grad: rgba(0,0,0,0.18);
+      --font-head: 'Titillium Web', Verdana, Helvetica, sans-serif;
+      --font-body: 'Inter', 'Titillium Web', Verdana, sans-serif;
     }
     [data-theme="dark"] {
-      --bg:         #0f0f0f;
-      --bg-alt:     #1a1a1a;
-      --text:       #e8e8e8;
-      --muted:      #999999;
-      --link:       #5b9cf6;
-      --link-hover: #f09228;
-      --highlight:  #2a2800;
-      --border:     #2e2e2e;
-      --hr-grad:    rgba(255,255,255,0.12);
+      --bg: #0f0f0f; --bg-alt: #1a1a1a;
+      --text: #e8e8e8; --muted: #999999;
+      --link: #5b9cf6; --link-hover: #f09228;
+      --highlight: #2a2800; --border: #2e2e2e;
+      --hr-grad: rgba(255,255,255,0.12);
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--font-body);
-      font-size: 16px;
-      line-height: 1.7;
-      background: var(--bg);
-      color: var(--text);
-      transition: background 0.25s, color 0.25s;
-    }
+    body { font-family: var(--font-body); font-size: 16px; line-height: 1.7; background: var(--bg); color: var(--text); transition: background 0.25s, color 0.25s; }
     a { color: var(--link); text-decoration: none; }
     a:hover, a:focus { color: var(--link-hover); }
-    img { display: block; max-width: 100%; }
+    img, video { display: block; max-width: 100%; }
+    hr { border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0,0,0,0), var(--hr-grad), rgba(0,0,0,0)); margin: 2.4rem 0; }
+    .page { max-width: 900px; margin: 0 auto; padding: 2rem 1.6rem 5rem; }
 
-    hr {
-      border: 0;
-      height: 1px;
-      background-image: linear-gradient(to right, rgba(0,0,0,0), var(--hr-grad), rgba(0,0,0,0));
-      margin: 2.4rem 0;
-    }
-
-    .page {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 2rem 1.6rem 4rem;
-    }
-
-    /* Top nav (mirrors index.html) */
-    .nav-wrapper {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-      transition: background 0.25s;
-    }
-    .top-nav {
-      display: flex;
-      gap: 0;
-      padding: 0 1.6rem;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    .top-nav a {
-      font-family: var(--font-head);
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 0.75rem 1.1rem;
-      border-bottom: 2px solid transparent;
-      transition: color 0.15s, border-color 0.15s;
-    }
+    .nav-wrapper { position: sticky; top: 0; z-index: 100; background: var(--bg); border-bottom: 1px solid var(--border); transition: background 0.25s; }
+    .top-nav { display: flex; gap: 0; padding: 0 1.6rem; max-width: 900px; margin: 0 auto; }
+    .top-nav a { font-family: var(--font-head); font-size: 0.88rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; padding: 0.75rem 1.1rem; border-bottom: 2px solid transparent; transition: color 0.15s, border-color 0.15s; }
     .top-nav a:hover { color: var(--link); border-bottom-color: var(--link); }
-    .theme-toggle {
-      margin-left: auto;
-      align-self: center;
-      background: none;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 0.3rem 0.7rem;
-      cursor: pointer;
-      font-size: 0.85rem;
-      color: var(--muted);
-      transition: border-color 0.2s, color 0.2s;
-      line-height: 1;
-    }
+    .theme-toggle { margin-left: auto; align-self: center; background: none; border: 1px solid var(--border); border-radius: 20px; padding: 0.3rem 0.7rem; cursor: pointer; font-size: 0.85rem; color: var(--muted); transition: border-color 0.2s, color 0.2s; line-height: 1; }
     .theme-toggle:hover { border-color: var(--link); color: var(--text); }
 
-    /* Back link */
-    .back-link {
-      font-family: var(--font-head);
-      font-size: 0.85rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 1.2rem;
-      display: inline-block;
-    }
+    .back-link { font-family: var(--font-head); font-size: 0.82rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.5rem; display: inline-block; }
     .back-link:hover { color: var(--link); }
 
-    /* Title block */
-    .section-kicker {
-      font-family: var(--font-head);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      margin-bottom: 0.4rem;
-    }
-    .project-title {
-      font-family: var(--font-head);
-      font-size: 2.2rem;
-      font-weight: 600;
-      line-height: 1.15;
-      color: var(--text);
-      margin-bottom: 0.9rem;
-    }
-    .meta-line {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-bottom: 0.8rem;
-    }
-    .venue-badge {
-      display: inline-block;
-      background: var(--link);
-      color: #fff;
-      font-size: 0.72rem;
-      font-weight: 600;
-      padding: 0.1rem 0.48rem;
-      border-radius: 4px;
-      letter-spacing: 0.02em;
-    }
-    .role-line {
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-bottom: 0.8rem;
-    }
-    .resource-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem 0.9rem;
-      font-size: 0.9rem;
-      margin-bottom: 1.8rem;
-    }
-    .resource-links a {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.3rem 0.75rem;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      font-weight: 500;
-      transition: border-color 0.2s;
-    }
-    .resource-links a:hover { border-color: var(--link); }
+    .section-kicker { font-family: var(--font-head); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 0.4rem; }
+    .project-title { font-family: var(--font-head); font-size: 2.4rem; font-weight: 600; line-height: 1.1; color: var(--text); margin-bottom: 0.3rem; }
+    .project-subtitle { font-family: var(--font-head); font-size: 1.2rem; color: var(--muted); margin-bottom: 1rem; font-weight: 300; }
+
+    .meta-line { display: flex; align-items: center; flex-wrap: wrap; gap: 0.4rem; font-size: 0.9rem; color: var(--muted); margin-bottom: 0.8rem; }
+    .venue-badge { display: inline-block; background: var(--link); color: #fff; font-size: 0.72rem; font-weight: 600; padding: 0.1rem 0.48rem; border-radius: 4px; letter-spacing: 0.02em; }
+    .role-line { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.9rem; }
+
+    .tech-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1.1rem; }
+    .tech-tag { font-size: 0.74rem; padding: 0.18rem 0.55rem; border: 1px solid var(--border); border-radius: 4px; color: var(--muted); background: var(--bg); }
+
+    .resource-links { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+    .resource-links a { display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.4rem 1rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.875rem; font-weight: 500; transition: border-color 0.2s, color 0.2s; }
+    .resource-links a:hover { border-color: var(--link); color: var(--link); }
+
+    /* Stats bar */
+    .stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin: 0 0 2.5rem; background: var(--bg-alt); }
+    .stat-block { padding: 1.4rem 1rem; text-align: center; border-right: 1px solid var(--border); }
+    .stat-block:last-child { border-right: none; }
+    .stat-num { font-family: var(--font-head); font-size: 2.2rem; font-weight: 600; color: var(--link); line-height: 1; display: block; margin-bottom: 0.3rem; }
+    .stat-lbl { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
 
     /* Hero media */
-    .hero-media {
-      width: 100%;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      object-fit: cover;
-      max-height: 420px;
-      margin-bottom: 0.4rem;
-    }
-    .media-caption {
-      font-size: 0.82rem;
-      color: var(--muted);
-      text-align: center;
-      margin-bottom: 2rem;
-      font-style: italic;
-    }
+    .hero-media-wrap { border-radius: 14px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 0.5rem; background: var(--bg-alt); }
+    .hero-media-wrap img { width: 100%; max-height: 440px; object-fit: contain; display: block; }
+    .media-caption { font-size: 0.82rem; color: var(--muted); text-align: center; margin-bottom: 2.5rem; font-style: italic; }
 
-    /* Content */
-    h2.section-title {
-      font-family: var(--font-head);
-      font-size: 1.45rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-top: 2.2rem;
-      margin-bottom: 1rem;
-    }
-    h3.subsection-title {
-      font-family: var(--font-head);
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-top: 1.5rem;
-      margin-bottom: 0.6rem;
-    }
-    .prose p { margin-bottom: 1rem; color: var(--text); }
-    .prose ul {
-      list-style: disc;
-      padding-left: 1.3rem;
-      margin-bottom: 1rem;
-      color: var(--text);
-    }
-    .prose ul li { margin-bottom: 0.35rem; }
+    /* Chapters */
+    .chapter { margin-top: 3rem; }
+    .chapter-head { display: flex; align-items: baseline; gap: 0.75rem; border-bottom: 1px solid var(--border); padding-bottom: 0.6rem; margin-bottom: 1.2rem; }
+    .chapter-n { font-family: var(--font-head); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--link); opacity: 0.6; flex-shrink: 0; }
+    .chapter-head h2 { font-family: var(--font-head); font-size: 1.5rem; font-weight: 600; color: var(--text); }
 
-    /* Media grid */
-    .media-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.75rem;
-      margin-bottom: 1rem;
-    }
-    .media-grid img, .media-grid video {
-      width: 100%;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      object-fit: cover;
-      aspect-ratio: 16/9;
-    }
-    @media (max-width: 640px) {
-      .media-grid { grid-template-columns: 1fr; }
-      .project-title { font-size: 1.7rem; }
-    }
+    /* Prose */
+    .prose p { margin-bottom: 1rem; color: var(--text); line-height: 1.75; }
+    .prose ul { list-style: disc; padding-left: 1.3rem; margin-bottom: 1rem; color: var(--text); }
+    .prose ul li { margin-bottom: 0.35rem; line-height: 1.7; }
 
     /* Callout */
-    .callout {
-      padding: 1rem 1.15rem;
-      border-left: 3px solid var(--link);
-      background: var(--bg-alt);
-      border-radius: 0 8px 8px 0;
-      font-size: 0.95rem;
-      margin: 1.2rem 0;
-      color: var(--text);
-    }
+    .callout { padding: 1rem 1.15rem; border-left: 3px solid var(--link); background: var(--bg-alt); border-radius: 0 8px 8px 0; font-size: 0.95rem; margin: 1.2rem 0; color: var(--text); line-height: 1.75; }
     .callout strong { color: var(--text); }
 
-    /* Tech tag row */
-    .tech-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-      margin-bottom: 1.2rem;
-    }
-    .tech-tag {
-      font-size: 0.76rem;
-      padding: 0.18rem 0.55rem;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      color: var(--muted);
-      background: var(--bg);
-    }
+    /* Media grid */
+    .media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem; }
+    .media-grid img, .media-grid video { width: 100%; border-radius: 10px; border: 1px solid var(--border); object-fit: cover; aspect-ratio: 16/9; }
 
-    .site-footer {
-      text-align: center;
-      padding: 2rem 0 0.5rem;
-      font-size: 0.82rem;
-      color: var(--muted);
+    /* Step cards */
+    .step-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; margin: 1.2rem 0; }
+    .step-card { padding: 1.15rem; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 10px; }
+    .step-card .sn { font-family: var(--font-head); font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--link); margin-bottom: 0.3rem; display: block; }
+    .step-card h4 { font-family: var(--font-head); font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 0.3rem; }
+    .step-card p { font-size: 0.84rem; color: var(--muted); line-height: 1.6; margin: 0; }
+
+    /* Loop diagram */
+    .loop-row { display: flex; align-items: stretch; gap: 0; margin: 1.3rem 0; overflow-x: auto; padding-bottom: 4px; }
+    .loop-cell { flex: 1; min-width: 90px; text-align: center; padding: 0.9rem 0.5rem; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 8px; font-size: 0.78rem; color: var(--text); font-weight: 500; line-height: 1.4; }
+    .loop-cell .lci { font-size: 1.3rem; display: block; margin-bottom: 0.3rem; }
+    .loop-arr { flex-shrink: 0; display: flex; align-items: center; font-size: 0.9rem; color: var(--link); padding: 0 0.3rem; opacity: 0.45; }
+
+    /* Lesson cards */
+    .lesson-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin: 1.2rem 0; }
+    .lesson-card { padding: 1.2rem; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 10px; }
+    .lesson-card .lci { font-size: 1.5rem; margin-bottom: 0.5rem; display: block; }
+    .lesson-card h4 { font-family: var(--font-head); font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 0.35rem; }
+    .lesson-card p { font-size: 0.83rem; color: var(--muted); line-height: 1.6; margin: 0; }
+
+    /* Next project teaser */
+    .next-card { margin-top: 3rem; padding: 1.5rem; background: var(--highlight); border-radius: 12px; border: 1px solid var(--border); display: flex; align-items: center; gap: 1.5rem; }
+    .next-card img { width: 90px; height: 90px; border-radius: 10px; object-fit: cover; border: 1px solid var(--border); flex-shrink: 0; }
+    .nxt-lbl { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.3rem; font-family: var(--font-head); font-weight: 600; }
+    .next-card h3 { font-family: var(--font-head); font-size: 1.05rem; font-weight: 600; color: var(--text); margin-bottom: 0.4rem; }
+    .next-card p { font-size: 0.86rem; color: var(--muted); margin-bottom: 0.6rem; line-height: 1.6; }
+
+    .site-footer { text-align: center; padding: 2rem 0 0.5rem; font-size: 0.82rem; color: var(--muted); }
+
+    @media (max-width: 640px) {
+      .project-title { font-size: 1.9rem; }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .stat-block:nth-child(2) { border-right: none; }
+      .stat-block:nth-child(3), .stat-block:nth-child(4) { border-top: 1px solid var(--border); }
+      .stat-block:nth-child(3) { border-right: 1px solid var(--border); }
+      .media-grid, .step-cards, .lesson-cards { grid-template-columns: 1fr; }
+      .next-card { flex-direction: column; gap: 1rem; }
+      .next-card img { width: 100%; height: 140px; }
     }
   </style>
 </head>
@@ -286,11 +144,11 @@
 </div>
 
 <div class="page">
+  <a href="index.html#projects" class="back-link">← All Projects</a>
 
-  <a href="index.html#projects" class="back-link">← Back to projects</a>
-
-  <p class="section-kicker">Project · Robot Learning</p>
-  <h1 class="project-title">Autonomous Towel Folding — Finetuning ACT on a Bimanual Setup</h1>
+  <p class="section-kicker">Project · Robot Learning · ETH Robotics Club · 2025</p>
+  <h1 class="project-title">Autonomous Towel Folding</h1>
+  <p class="project-subtitle">Finetuning ACT on a custom bimanual setup</p>
 
   <div class="meta-line">
     <span class="venue-badge">Robot Learning</span>
@@ -299,7 +157,7 @@
   <p class="role-line">Project lead &nbsp;·&nbsp; team of 20 students</p>
 
   <div class="tech-tags">
-    <span class="tech-tag">ACT (Action Chunking Transformer)</span>
+    <span class="tech-tag">ACT</span>
     <span class="tech-tag">Bimanual Manipulation</span>
     <span class="tech-tag">YAM Arms</span>
     <span class="tech-tag">Imitation Learning</span>
@@ -310,90 +168,192 @@
 
   <div class="resource-links">
     <a href="https://github.com/ETHRoboticsClub/yams-robot-server" target="_blank">GitHub</a>
-    <a href="https://www.linkedin.com/posts/arestrepo2_this-semester-i-had-the-privilege-of-leading-activity-7406581442303991828-kh15?utm_source=share&utm_medium=member_desktop&rcm=ACoAADPEDHIBzwNZiVZnyYpKen7_QXZ6lCVsCnE" target="_blank">LinkedIn post</a>
-    <a href="https://www.linkedin.com/posts/eth-robotics-club_tired-of-folding-laundry-say-no-more-the-activity-7419038243737804803-n3h1?utm_source=share&utm_medium=member_desktop&rcm=ACoAADPEDHIBzwNZiVZnyYpKen7_QXZ6lCVsCnE" target="_blank">Club announcement</a>
+    <a href="https://www.linkedin.com/posts/arestrepo2_this-semester-i-had-the-privilege-of-leading-activity-7406581442303991828-kh15?utm_source=share&utm_medium=member_desktop&rcm=ACoAADPEDHIBzwNZiVZnyYpKen7_QXZ6lCVsCnE" target="_blank">My Post</a>
+    <a href="https://www.linkedin.com/posts/eth-robotics-club_tired-of-folding-laundry-say-no-more-the-activity-7419038243737804803-n3h1?utm_source=share&utm_medium=member_desktop&rcm=ACoAADPEDHIBzwNZiVZnyYpKen7_QXZ6lCVsCnE" target="_blank">Club Announcement</a>
+    <a href="club.html">About the Club</a>
   </div>
 
-  <img src="media/act.gif" alt="ACT policy autonomously folding a towel" class="hero-media" style="object-fit:contain; background:var(--bg-alt);">
-  <p class="media-caption">The finetuned ACT policy autonomously folding a towel on our bimanual setup.</p>
+  <div class="stats-bar">
+    <div class="stat-block">
+      <span class="stat-num">20</span>
+      <span class="stat-lbl">Students</span>
+    </div>
+    <div class="stat-block">
+      <span class="stat-num">1</span>
+      <span class="stat-lbl">Semester</span>
+    </div>
+    <div class="stat-block">
+      <span class="stat-num">100s</span>
+      <span class="stat-lbl">Demos collected</span>
+    </div>
+    <div class="stat-block">
+      <span class="stat-num">✓</span>
+      <span class="stat-lbl">Working policy</span>
+    </div>
+  </div>
+
+  <div class="hero-media-wrap">
+    <img src="media/act.gif" alt="ACT policy autonomously folding a towel">
+  </div>
+  <p class="media-caption">The finetuned ACT policy autonomously folding a towel.</p>
 
   <div class="callout">
-    <strong>TL;DR —</strong> I led a 20-student team at ETH Robotics Club to finetune <em>ACT (Action Chunking with Transformers)</em> on a custom bimanual robot setup, getting it to autonomously fold towels — a classic long-horizon, deformable-object manipulation benchmark. We built the hardware from scratch, collected teleoperated demonstration data, and iterated through multiple rounds of training and deployment.
+    <strong>TL;DR —</strong> I led a 20-student team to finetune <em>ACT (Action Chunking with Transformers)</em> on a custom bimanual robot setup, getting it to autonomously fold towels — a classic long-horizon, deformable-object manipulation task. We built the hardware from scratch, collected teleoperated demo data, and iterated through training and deployment.
   </div>
 
-  <hr>
+  <!-- Chapter 1 -->
+  <div class="chapter">
+    <div class="chapter-head">
+      <span class="chapter-n">01</span>
+      <h2>Why towel folding?</h2>
+    </div>
+    <div class="prose">
+      <p>
+        Folding a towel sounds trivial — until you ask a robot to do it. Towels are <strong>deformable</strong>, <strong>visually ambiguous</strong>, and require a long sequence of coordinated grasps, lifts, and re-grasps where every step depends on the outcome of the previous one. It's a textbook long-horizon manipulation benchmark.
+      </p>
+      <p>
+        The goal: take <strong>ACT</strong> — a state-of-the-art imitation learning algorithm from the ALOHA project — and get it running end-to-end on hardware we built ourselves from scratch.
+      </p>
+    </div>
+  </div>
 
-  <section class="prose">
-    <h2 class="section-title">The Project</h2>
-    <p>
-      Folding a towel sounds trivial — until you ask a robot to do it. Towels are deformable, high-dimensional, and visually ambiguous; a bimanual system has to coordinate two arms through a long sequence of grasps, lifts, and re-grasps, with every step depending on the outcome of the previous one. It's a textbook long-horizon manipulation task, and a widely used benchmark in robot learning research.
-    </p>
-    <p>
-      Over the course of the 2025 semester, I led a team of 20 students from the <a href="https://www.ethrobotics.ch/" target="_blank">ETH Robotics Club</a> to replicate and extend this result on our own hardware. The goal was to take a state-of-the-art imitation learning algorithm — <strong>ACT (Action Chunking with Transformers)</strong>, originally introduced as part of the ALOHA project — and get it running autonomously on a bimanual setup we built ourselves.
-    </p>
-
-    <h2 class="section-title">The Hardware Setup</h2>
-    <p>
-      We assembled a bimanual manipulation station around two <strong>YAM arms</strong> with parallel-jaw grippers, mounted on a rigid frame with multiple camera viewpoints for visual servoing and data collection. A teleoperation rig let a human operator move both arms simultaneously via a leader-follower configuration — this is the pipeline we used to collect demonstration data for training.
-    </p>
-
+  <!-- Chapter 2 -->
+  <div class="chapter">
+    <div class="chapter-head">
+      <span class="chapter-n">02</span>
+      <h2>The Hardware</h2>
+    </div>
+    <div class="prose">
+      <p>
+        We assembled a bimanual manipulation station around two <strong>YAM arms</strong> with parallel-jaw grippers, mounted on a rigid frame with multiple camera viewpoints. A leader-follower teleoperation rig let a human operator drive both arms simultaneously — this pipeline captured all our demonstration data.
+      </p>
+    </div>
     <div class="media-grid">
       <img src="media/bimanual_setup.jpg" alt="Bimanual YAM arms setup">
-      <img src="media/team.jpg" alt="Project team at ETH Robotics Club">
+      <img src="media/team.jpg" alt="The 20-student team">
     </div>
-    <p class="media-caption">Left: the bimanual setup during training runs. Right: part of the team behind the project.</p>
+    <p class="media-caption">Left: bimanual setup during data collection. Right: part of the 20-student team.</p>
+  </div>
 
-    <h2 class="section-title">The Approach — ACT</h2>
-    <p>
-      ACT (Action Chunking with Transformers) is an imitation learning policy that predicts <em>chunks</em> of future actions from visual observations rather than single-step actions. The chunking trick helps tremendously with compounding error over long horizons, which is exactly the failure mode that breaks naive behaviour cloning on tasks like folding.
-    </p>
-    <ul>
-      <li><strong>Inputs:</strong> multi-view RGB observations + current joint states of both arms.</li>
-      <li><strong>Outputs:</strong> a chunk of future joint-space actions for both arms simultaneously.</li>
-      <li><strong>Architecture:</strong> a transformer encoder-decoder trained with a conditional-VAE objective for smoother action distributions.</li>
-      <li><strong>Training data:</strong> teleoperated demonstrations collected on our own hardware.</li>
-    </ul>
+  <!-- Chapter 3 -->
+  <div class="chapter">
+    <div class="chapter-head">
+      <span class="chapter-n">03</span>
+      <h2>ACT: The Algorithm</h2>
+    </div>
+    <div class="prose">
+      <p>
+        ACT predicts <em>chunks</em> of future actions instead of single-step commands — which massively reduces compounding error over long horizons. Here's the full pipeline:
+      </p>
+    </div>
+    <div class="step-cards">
+      <div class="step-card">
+        <span class="sn">Step 1 — Input</span>
+        <h4>See the scene</h4>
+        <p>Multi-view RGB cameras capture the workspace. Current joint states of both arms are also fed in.</p>
+      </div>
+      <div class="step-card">
+        <span class="sn">Step 2 — Encode</span>
+        <h4>Understand the state</h4>
+        <p>A CNN backbone encodes each camera view. A transformer encoder fuses vision + proprioception into a compact representation.</p>
+      </div>
+      <div class="step-card">
+        <span class="sn">Step 3 — Predict</span>
+        <h4>Plan a chunk of actions</h4>
+        <p>A CVAE decoder outputs a chunk of N future joint commands for both arms simultaneously — smoothing out jitter and noise.</p>
+      </div>
+      <div class="step-card">
+        <span class="sn">Step 4 — Execute</span>
+        <h4>Move, then re-plan</h4>
+        <p>Commands execute over N timesteps with temporal ensembling, then the next chunk is predicted from the new observation.</p>
+      </div>
+    </div>
+  </div>
 
-    <h2 class="section-title">Data Collection &amp; Training</h2>
-    <p>
-      The bulk of the semester went into the unglamorous but critical loop of <em>collect data → train → deploy → watch it fail → collect more data</em>. We recorded hundreds of teleoperated demonstrations of towel folding, covering variations in initial towel configuration, lighting, and arm starting poses. Each demonstration captured synchronised joint states, gripper commands, and multiple camera streams.
-    </p>
-    <p>
-      Training was done on finetuned ACT checkpoints, progressively increasing dataset size and tuning the chunk size, learning rate schedule, and observation encoders to our specific setup.
-    </p>
+  <!-- Chapter 4 -->
+  <div class="chapter">
+    <div class="chapter-head">
+      <span class="chapter-n">04</span>
+      <h2>The Training Loop</h2>
+    </div>
+    <div class="prose">
+      <p>
+        Most of the semester was this loop. Collect demos, train, deploy, watch it fail, figure out why — hardware or data — and repeat. We ran hundreds of teleoperated demos across variations in towel configuration, lighting, and starting poses.
+      </p>
+    </div>
+    <div class="loop-row">
+      <div class="loop-cell"><span class="lci">🎮</span>Collect<br>demos</div>
+      <div class="loop-arr">→</div>
+      <div class="loop-cell"><span class="lci">🏋️</span>Train<br>policy</div>
+      <div class="loop-arr">→</div>
+      <div class="loop-cell"><span class="lci">🤖</span>Deploy<br>on robot</div>
+      <div class="loop-arr">→</div>
+      <div class="loop-cell"><span class="lci">👀</span>Observe<br>failures</div>
+      <div class="loop-arr">→</div>
+      <div class="loop-cell"><span class="lci">🔧</span>Fix &amp;<br>iterate</div>
+      <div class="loop-arr" style="font-size:0.75rem;opacity:0.35;">↺</div>
+    </div>
+    <div class="prose">
+      <p>
+        We progressively scaled dataset size and tuned chunk size, learning rate schedules, and observation encoders. Hardware bugs — camera misalignment, gripper slippage, mount flex — consumed as much time as ML iteration.
+      </p>
+    </div>
+  </div>
 
-    <h3 class="subsection-title">Autonomous rollouts</h3>
+  <!-- Chapter 5 -->
+  <div class="chapter">
+    <div class="chapter-head">
+      <span class="chapter-n">05</span>
+      <h2>It Works</h2>
+    </div>
+    <div class="prose">
+      <p>After multiple rounds of data collection and training, the policy folds towels reliably across different starting configurations:</p>
+    </div>
     <div class="media-grid">
       <video src="media/IMG_7951.mov" autoplay loop muted playsinline></video>
       <video src="media/IMG_7953%20(1).mov" autoplay loop muted playsinline></video>
     </div>
-    <p class="media-caption">Autonomous rollouts of the trained ACT policy on held-out towel configurations.</p>
+    <p class="media-caption">Autonomous rollouts on held-out towel configurations.</p>
+  </div>
 
-    <h2 class="section-title">What I Learned</h2>
-    <ul>
-      <li><strong>Hardware iteration is the real work.</strong> The algorithm matters, but so does mount rigidity, camera placement, latency in the teleop pipeline, and gripper repeatability. We rebuilt parts of the setup three times.</li>
-      <li><strong>Data quality &gt; data quantity.</strong> A small set of clean, consistent demonstrations outperformed a larger noisy one.</li>
-      <li><strong>Leading a 20-person volunteer team</strong> across hardware, data, and ML sub-teams — coordinating, unblocking people, and keeping the critical path moving — was the hardest and most rewarding part.</li>
-    </ul>
-
-    <h2 class="section-title">Code</h2>
-    <p>
-      The robot server and teleoperation stack we built for this project is open-sourced at
-      <a href="https://github.com/ETHRoboticsClub/yams-robot-server" target="_blank">github.com/ETHRoboticsClub/yams-robot-server</a>.
-    </p>
-
-    <h2 class="section-title">What's Next</h2>
-    <p>
-      The natural continuation of this project is the <a href="index.html#projects">Half-Humanoid Manipulation &amp; Teleoperation Setup</a> I'm currently building — moving from parallel-jaw grippers to dexterous humanoid hands and from single-task towel folding to a broader class of long-horizon dexterous manipulation tasks. More on that soon.
-    </p>
-  </section>
+  <!-- Chapter 6 -->
+  <div class="chapter">
+    <div class="chapter-head">
+      <span class="chapter-n">06</span>
+      <h2>What We Learned</h2>
+    </div>
+    <div class="lesson-cards">
+      <div class="lesson-card">
+        <span class="lci">🔧</span>
+        <h4>Hardware is the bottleneck</h4>
+        <p>We rebuilt parts of the setup 3 times. Mount rigidity, camera placement, and gripper repeatability matter as much as the algorithm.</p>
+      </div>
+      <div class="lesson-card">
+        <span class="lci">📊</span>
+        <h4>Quality beats quantity</h4>
+        <p>A small, clean demo set outperformed a larger noisy one. Data curation is its own skill.</p>
+      </div>
+      <div class="lesson-card">
+        <span class="lci">👥</span>
+        <h4>Team coordination is hard</h4>
+        <p>Leading 20 students across hardware, data, and ML — keeping the critical path moving — was the hardest and most rewarding part.</p>
+      </div>
+    </div>
+  </div>
 
   <hr>
 
-  <a href="index.html#projects" class="back-link">← Back to projects</a>
+  <div class="next-card">
+    <img src="media/humanoid.png" alt="Half-Humanoid" style="filter:blur(3px);">
+    <div>
+      <p class="nxt-lbl">What's next</p>
+      <h3>Half-Humanoid Manipulation &amp; Teleoperation Setup</h3>
+      <p>Moving from parallel-jaw grippers to dexterous humanoid hands — targeting long-horizon dexterous manipulation. Announcing soon.</p>
+      <a href="index.html#projects">See all projects →</a>
+    </div>
+  </div>
 
   <footer class="site-footer"></footer>
-
 </div>
 
 <script>
@@ -404,7 +364,6 @@
   const initTheme = saved || (prefersDark ? 'dark' : 'light');
   html.setAttribute('data-theme', initTheme);
   toggleBtn.textContent = initTheme === 'dark' ? '☀️' : '🌙';
-
   toggleBtn.addEventListener('click', () => {
     const isDark = html.getAttribute('data-theme') === 'dark';
     const next = isDark ? 'light' : 'dark';
@@ -412,9 +371,7 @@
     toggleBtn.textContent = next === 'dark' ? '☀️' : '🌙';
     localStorage.setItem('theme', next);
   });
-
   twemoji.parse(document.body, { folder: 'svg', ext: '.svg' });
 </script>
-
 </body>
 </html>
